@@ -1,0 +1,142 @@
+# Node.js dependencies
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Build outputs
+dist/
+build/
+*.tsbuildinfo
+
+# Environment files
+.env
+.env.*
+!.env.example
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# Python virtual environments
+venv/
+env/
+ENV/
+*.venv
+*_env/
+youtube_transcript_env/
+
+# oAuth tokens and credentials
+.oauthtokens/
+
+# IDE files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Claude-trace specific
+.claude-trace/
+*.jsonl
+
+# Keep .claude/ directory but ignore .jsonl files within it
+!.claude/
+.claude/**/*.jsonl
+
+# Keep .github/ directory for workflows
+!.github/
+
+# Logs
+logs/
+*.log
+
+# Coverage reports
+coverage/
+.nyc_output/
+
+# Runtime data
+pids/
+*.pid
+*.seed
+*.pid.lock
+
+# Optional npm cache directory
+.npm
+
+# Optional eslint cache
+.eslintcache
+
+# Optional REPL history
+.node_repl_history
+
+# Output of 'npm pack'
+*.tgz
+
+# Yarn Integrity file
+.yarn-integrity
+
+# archive files
+.archive/
+
+# serena files
+.serena/
+
+# claude-code distribution files
+cli.js
+cli.beautify.js
+
+# claude-code analysis files
+claude-code-analysis/
+
+# vale styles
+styles/
+
+#critique files
+critique-risks-logs/
+
+# repo-mix files
+.repomix/
+*-repo.md
+citation-manager-repo.md
+
+# Git worktrees
+.worktrees/
+_worktrees/
+
+# claude-trace logs
+.claude-trace/
+
+
+#vs-code
+*.code-workspace
+
+
+# Claude Local Settings
+.claude/settings.local.json
+
+# JACT state folder
+.citation-manager/
+
+# lsmcp cache
+.lsmcp/cache
+
+#mc-porter
+config/mcporter.json
+
+# Session status tracking
+current-status.json
+
+# Continuous learning personal data (but allow template config)
+.claude/learned/
+!.claude/learned/config.json
+settings.local.json
