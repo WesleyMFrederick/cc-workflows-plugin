@@ -424,38 +424,39 @@ chore(deps): update .claude submodule with <summary of submodule changes>
 
 ## Integration with Bash Tool
 
-The Bash tool's git commit workflow references this skill:
+**Steps — execute in order, no skipping:**
 
-**Before creating commit:**
-
-1. Announce: "I'm using the create-git-commit skill to format this commit message."
-2. Run scope discovery: `git status` and `git diff --name-only`
-3. Select type based on changes
-4. Apply Primary Scope Rule to pick scope
-5. Craft self-contained description
-6. Structure body (optional)
-7. Assemble footer in correct order
-
-**Commit message template:**
+1. Run `git status` to see changed files
+2. Run `git diff --name-only` to confirm file list
+3. Pick type (`feat`, `fix`, `docs`, `chore`, `refactor`, `test`, `perf`, `ci`, `build`, `style`)
+4. Pick scope using the Primary Scope Rule (30-second max)
+5. Write the commit message to a temp file:
 
 ```bash
-git commit -m "$(cat <<'EOF'
-<type>(<scope>): [US#.#] [Task #.#.#] <description>
+cat > /tmp/commit-msg.txt << 'EOF'
+<type>(<scope>): <description>
 
-[Optional body explaining why]
-
-[Optional: BREAKING CHANGE: details]
-[Optional: Refs: #123]
-[Optional: Reviewed-by: Name <email>]
+<optional body — explain why, not what>
 
 🤖 Generated with [Claude Code](https://claude.com/claude-code)
 
 Co-Authored-By: Claude <noreply@anthropic.com>
 EOF
-)"
 ```
 
-**Note:** When working within user stories, always check implementation plans or context for US/task numbers. If no user story context exists, omit the bracketed identifiers.
+6. Commit using the file:
+
+```bash
+git commit -F /tmp/commit-msg.txt
+```
+
+**Rules for the message file:**
+- Subject line: lowercase after scope, no period, under 72 chars
+- Blank line between subject and body
+- Blank line between body and footers
+- `Co-Authored-By: Claude <noreply@anthropic.com>` — exact string, no model version
+- If working within user stories: add `[US#.#] [Task #.#.#]` to subject line before description
+- If no user stories: omit the brackets entirely
 
 ## Quick Reference
 
