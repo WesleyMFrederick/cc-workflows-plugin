@@ -46,7 +46,8 @@
       "Bash(mgrep:*)",
       "Bash(.claude/scripts/setup-worktree.sh:*)",
       "Bash(openspec instructions:*)",
-      "Bash(dirname:*)"
+      "Bash(dirname:*)",
+      "Bash(cp:*)"
     ],
     "deny": [],
     "ask": [],
