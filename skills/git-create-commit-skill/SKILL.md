@@ -346,6 +346,77 @@ content for validation and content extraction phases.
 
 **Fix:** US/task numbers are identifiers that belong in the description line, not narrative context in the body. Check implementation plans, user story documents, or commit context for US/task numbers before committing.
 
+## Submodule Propagation
+
+> [!attention] **Dirty submodules = commit inside first, push to local hub, then commit pointer in parent. Always. One operation.**
+
+### Architecture: Local Hub-and-Spoke
+
+The `.claude` submodule uses a **local hub** topology:
+
+```text
+cc-workflows-plugin (LOCAL HUB)
+  ├── origin: local path (fast, default)
+  ├── github: https://github.com/... (backup, push manually)
+  │
+  ├── jact/.claude pulls/pushes here
+  └── other-project/.claude pulls/pushes here
+```
+
+**Remotes in each consumer's `.claude/` submodule:**
+- `origin` → local path to `cc-workflows-plugin` (default for push/pull)
+- `github` → GitHub URL (backup only, push explicitly when desired)
+
+### The Rule
+
+When `git status` in the parent repo shows a modified submodule (e.g., `.claude`), you MUST propagate commits bottom-up:
+
+1. **Detect:** Run `git status` in parent repo. Look for modified submodules (lines like `M .claude`)
+2. **Commit inside submodule:** Stage changes, commit using this skill's full format
+3. **Push submodule to local hub:** `git -C .claude push origin main`
+4. **Commit pointer in parent:** Stage the submodule path and commit the updated pointer
+
+**This is ONE atomic operation from the user's perspective.** Do NOT stop between steps to ask. Do NOT commit only the parent pointer without first committing inside the submodule. Do NOT push to GitHub unless explicitly requested — `origin` is the local hub.
+
+### Workflow
+
+```text
+Parent repo: git status shows " M .claude"
+  ├─ Step 1: git -C .claude status          (discover submodule changes)
+  ├─ Step 2: git -C .claude add <files>     (stage inside submodule)
+  ├─ Step 3: git -C .claude commit          (commit inside submodule, full format)
+  ├─ Step 4: git -C .claude push origin main (push to LOCAL hub, NOT GitHub)
+  ├─ Step 5: git add .claude                (stage updated pointer in parent)
+  └─ Step 6: git commit                     (commit pointer update in parent, full format)
+```
+
+### Pushing to GitHub (Backup Only)
+
+GitHub is backup. Push explicitly when desired:
+
+```bash
+# From any consumer's .claude/ or from the standalone hub:
+git push github main
+```
+
+Do NOT push to GitHub automatically. The user will say "push to GitHub" or "back up" when they want it.
+
+### Commit Message for Pointer Updates
+
+Parent repo commits that only update a submodule pointer use scope `deps` or the submodule name:
+
+```text
+chore(deps): update .claude submodule with <summary of submodule changes>
+```
+
+### Red Flags - STOP Immediately
+
+- "I'll just commit the parent pointer" → WRONG. Submodule has uncommitted changes.
+- "Let me ask if they want to commit the submodule" → WRONG. Propagation is automatic.
+- "The submodule changes are separate" → WRONG. If user asked to commit, commit everything.
+- "Let me push to GitHub" → WRONG. Push to `origin` (local hub). GitHub is `github` remote, backup only.
+- "I should push parent to GitHub too" → WRONG. Not unless user asks.
+
 ## Integration with Bash Tool
 
 The Bash tool's git commit workflow references this skill:
