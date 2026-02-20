@@ -62,10 +62,21 @@ The script handles all mechanical phases:
 2. Naming determination
 3. Cleanup of existing worktree
 4. Worktree creation
-5. Dependency installation
+5. Dependency installation (with automatic submodule fallback)
 6. Verification
 7. Test validation
 8. Status report
+
+**CRITICAL: Script Error Handling**
+
+If the script exits with non-zero code:
+1. **DO NOT manually complete the script's phases** (npm install, build, test)
+2. Read the error output to understand what phase failed
+3. Report the failure to the user with the error message
+4. Let the script's built-in error handling (retries, fallbacks) handle recoverable errors
+5. Only escalate to user if script cannot auto-recover
+
+**Why:** The script contains automation specifically to avoid manual work. Manually duplicating script phases defeats the purpose of the automation and indicates the script needs to be fixed, not bypassed.
 
 ### Step 3: Report Results (Semantic - LLM)
 

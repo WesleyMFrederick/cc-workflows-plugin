@@ -96,7 +96,14 @@ echo "Phase 5: Environment Setup"
 
 if [[ -f package.json ]]; then
   echo "Installing npm dependencies..."
-  npm install
+  if ! npm install; then
+    echo "⚠️  npm install failed (likely submodule issue)"
+    echo "Attempting fallback: cloning .claude from remote main..."
+    rm -rf .claude
+    git clone --depth 1 --branch main https://github.com/WesleyMFrederick/cc-workflows-plugin.git .claude
+    echo "Retrying npm install without postinstall..."
+    npm install --ignore-scripts
+  fi
   echo "✓ Dependencies installed"
 elif [[ -f Cargo.toml ]]; then
   echo "Building Rust project..."
