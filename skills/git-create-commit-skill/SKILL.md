@@ -430,10 +430,9 @@ chore(deps): update .claude submodule with <summary of submodule changes>
 2. Run `git diff --name-only` to confirm file list
 3. Pick type (`feat`, `fix`, `docs`, `chore`, `refactor`, `test`, `perf`, `ci`, `build`, `style`)
 4. Pick scope using the Primary Scope Rule (30-second max)
-5. Write the commit message to a temp file:
+5. Use the **Write tool** to create `/tmp/commit-msg.txt` with this content:
 
-```bash
-cat > /tmp/commit-msg.txt << 'EOF'
+```
 <type>(<scope>): <description>
 
 <optional body — explain why, not what>
@@ -441,7 +440,6 @@ cat > /tmp/commit-msg.txt << 'EOF'
 🤖 Generated with [Claude Code](https://claude.com/claude-code)
 
 Co-Authored-By: Claude <noreply@anthropic.com>
-EOF
 ```
 
 6. Commit using the file:
