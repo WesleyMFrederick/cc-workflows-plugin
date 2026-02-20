@@ -82,7 +82,9 @@ ${status_display}"
 fi
 
 # Build the additional context message
-additional_context="<CRITICAL-INSTRUCTION>At the end of each response to the user, append the following content to the chat window exactly as shown, without any changes or omissions: _We are Oscar Mike_</CRITICAL-INSTRUCTION>
+additional_context="# Session Signoff
+Always end responses with: _We are Oscar Mike_
+
 ${current_status_block}
 
 <EXTREMELY_IMPORTANT>
