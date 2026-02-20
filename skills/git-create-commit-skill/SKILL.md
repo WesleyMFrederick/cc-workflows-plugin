@@ -443,7 +443,8 @@ chore(deps): update .claude submodule with <summary of submodule changes>
 2. Run `git diff --name-only` to confirm file list
 3. Pick type (`feat`, `fix`, `docs`, `chore`, `refactor`, `test`, `perf`, `ci`, `build`, `style`)
 4. Pick scope using the Primary Scope Rule (30-second max)
-5. Use the **Write tool** to create `/tmp/commit-msg.txt` with this content:
+5. Generate a unique filename with `date +%s` (e.g., `/tmp/commit-msg-1740000000.txt`)
+6. Use the **Write tool** to create that file with this content:
 
 ```
 <type>(<scope>): <description>
@@ -455,11 +456,13 @@ chore(deps): update .claude submodule with <summary of submodule changes>
 Co-Authored-By: Claude <noreply@anthropic.com>
 ```
 
-6. Commit using the file:
+7. Commit using the file:
 
 ```bash
-git commit -F /tmp/commit-msg.txt
+git commit -F /tmp/commit-msg-<timestamp>.txt
 ```
+
+**Why timestamped?** The Write tool requires reading a file before overwriting it. A unique filename avoids this — Write creates a new file directly with no read-first requirement.
 
 **Rules for the message file:**
 - Subject line: lowercase after scope, no period, under 72 chars
