@@ -373,7 +373,7 @@ When `git status` in the parent repo shows a modified submodule (e.g., `.claude`
 
 1. **Detect:** Run `git status` in parent repo. Look for modified submodules (lines like `M .claude`)
 2. **Commit inside submodule:** Stage changes, commit using this skill's full format
-3. **Push submodule to local hub:** `git -C .claude push origin main`
+3. **Push submodule to local hub:** Detect remote name via `git -C .claude remote -v` (may be `origin`, `origin-local`, etc.), then push: `git -C .claude push <remote> main`
 4. **Commit pointer in parent:** Stage the submodule path and commit the updated pointer
 
 **Even when the submodule working tree is clean**, always check for unpushed commits:
@@ -389,7 +389,7 @@ Parent repo: git status shows " M .claude"
   ├─ Step 1: git -C .claude status          (discover submodule changes)
   ├─ Step 2: git -C .claude add <files>     (stage inside submodule)
   ├─ Step 3: git -C .claude commit          (commit inside submodule, full format)
-  ├─ Step 4: git -C .claude push origin main (push to LOCAL hub, NOT GitHub)
+  ├─ Step 4: git -C .claude push <remote> main (detect remote name first, push to LOCAL hub, NOT GitHub)
   ├─ Step 5: git add .claude                (stage updated pointer in parent)
   └─ Step 6: git commit                     (commit pointer update in parent, full format)
 ```
