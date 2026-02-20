@@ -376,6 +376,10 @@ When `git status` in the parent repo shows a modified submodule (e.g., `.claude`
 3. **Push submodule to local hub:** `git -C .claude push origin main`
 4. **Commit pointer in parent:** Stage the submodule path and commit the updated pointer
 
+**Even when the submodule working tree is clean**, always check for unpushed commits:
+`git -C .claude log origin/main..HEAD --oneline`
+If unpushed commits exist, execute Step 3 (push to local hub). Hooks or prior sessions may have committed inside the submodule without pushing.
+
 **This is ONE atomic operation from the user's perspective.** Do NOT stop between steps to ask. Do NOT commit only the parent pointer without first committing inside the submodule. Do NOT push to GitHub unless explicitly requested — `origin` is the local hub.
 
 ### Workflow
@@ -416,6 +420,7 @@ chore(deps): update .claude submodule with <summary of submodule changes>
 - "The submodule changes are separate" → WRONG. If user asked to commit, commit everything.
 - "Let me push to GitHub" → WRONG. Push to `origin` (local hub). GitHub is `github` remote, backup only.
 - "I should push parent to GitHub too" → WRONG. Not unless user asks.
+- "Working tree is clean, nothing to do" → WRONG. Check for unpushed commits with `log origin/main..HEAD`.
 
 ## Integration with Bash Tool
 
