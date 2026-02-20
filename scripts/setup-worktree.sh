@@ -90,20 +90,29 @@ cd "$WORKTREE_PATH"
 echo "✓ Worktree created at: $WORKTREE_PATH"
 echo "✓ Branch created: $BRANCH_NAME"
 
+# Phase 4.5: Submodule — latest from local hub
+if [[ -f .gitmodules ]] && grep -q '.claude' .gitmodules; then
+  echo ""
+  echo "Phase 4.5: Submodule — latest from local hub"
+  if git submodule update --init --recursive; then
+    git -C .claude pull --ff-only origin main
+    echo "✓ .claude at $(git -C .claude rev-parse --short HEAD)"
+  else
+    echo "⚠️  submodule init failed, attempting fallback..."
+    LOCAL_HUB=$(git config --file .gitmodules submodule..claude.url 2>/dev/null)
+    rm -rf .claude
+    git clone --branch main "${LOCAL_HUB}" .claude
+    echo "✓ .claude cloned from local hub at $(git -C .claude rev-parse --short HEAD)"
+  fi
+fi
+
 # Phase 5: Environment Setup
 echo ""
 echo "Phase 5: Environment Setup"
 
 if [[ -f package.json ]]; then
   echo "Installing npm dependencies..."
-  if ! npm install; then
-    echo "⚠️  npm install failed (likely submodule issue)"
-    echo "Attempting fallback: cloning .claude from remote main..."
-    rm -rf .claude
-    git clone --depth 1 --branch main https://github.com/WesleyMFrederick/cc-workflows-plugin.git .claude
-    echo "Retrying npm install without postinstall..."
-    npm install --ignore-scripts
-  fi
+  npm install --ignore-scripts
   echo "✓ Dependencies installed"
 elif [[ -f Cargo.toml ]]; then
   echo "Building Rust project..."

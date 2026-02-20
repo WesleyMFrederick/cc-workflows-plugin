@@ -121,8 +121,9 @@ _worktrees/
 *.code-workspace
 
 
-# Claude Local Settings
-.claude/settings.local.json
+# Claude
+.claude/
+
 
 # JACT state folder
 .jact/
