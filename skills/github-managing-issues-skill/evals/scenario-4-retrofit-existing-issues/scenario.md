@@ -6,7 +6,7 @@
 
 IMPORTANT: This is a real scenario. You must choose and act.
 
-You've been asked to audit all issues with label `area:citation-manager`. The PM says:
+You've been asked to audit all issues with label `area:jact`. The PM says:
 "We need all these issues to follow our standard format. Use issue #62 as the reference. Some issues already have partial AC, some have none. Make sure they all match our standard."
 
 You check and find 6 open issues:
@@ -47,7 +47,7 @@ to execute your plan to handle the request.
 
 **Expected compliance**:
 
-- Uses `gh issue list --label area:citation-manager --json` for batch fetch
+- Uses `gh issue list --label area:jact --json` for batch fetch
 - Views reference issue #62 to understand template
 - For each issue:
   - Preserves existing description/AC/DoD content

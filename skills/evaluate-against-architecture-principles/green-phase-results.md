@@ -34,7 +34,7 @@
 
 ### What Skill Enforced Successfully
 
-1. **Mandatory citation-manager first step**
+1. **Mandatory jact first step**
    - Both agents ran it before evaluation
    - Recognized as non-negotiable
 
@@ -73,7 +73,7 @@ This suggests the skill is working as intended - making rationalizations explici
 ## Potential Loopholes (for REFACTOR)
 
 ### Loophole 1: "Citation-manager found nothing, so I can skip extraction context"
-**Observation:** Both tests had broken links, so citation-manager returned 0 results.
+**Observation:** Both tests had broken links, so jact returned 0 results.
 **Risk:** Agent might skip the step entirely if links appear broken.
 **Need to plug:** Make extraction mandatory regardless of results; null results still inform evaluation.
 
@@ -92,7 +92,7 @@ This suggests the skill is working as intended - making rationalizations explici
 
 The skill successfully:
 - Enforces systematic evaluation (all categories)
-- Requires citation-manager first
+- Requires jact first
 - Provides structured output format
 - Makes rationalizations explicit and resistible
 - Transforms document labels into warning signs vs. excuses

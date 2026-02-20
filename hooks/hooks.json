@@ -28,7 +28,7 @@
 				"hooks": [
 					{
 						"type": "command",
-						"command": "${CLAUDE_PROJECT_ROOT}/.claude/hooks/citation-manager/extractor.sh"
+						"command": "${CLAUDE_PROJECT_ROOT}/.claude/hooks/jact/extractor.sh"
 					}
 				]
 			},
@@ -37,7 +37,7 @@
 				"hooks": [
 					{
 						"type": "command",
-						"command": "${CLAUDE_PROJECT_ROOT}/.claude/hooks/citation-manager/validator.sh"
+						"command": "${CLAUDE_PROJECT_ROOT}/.claude/hooks/jact/validator.sh"
 					}
 				]
 			},

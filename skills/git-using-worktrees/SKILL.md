@@ -26,7 +26,7 @@ Use the setup script for single-command worktree creation:
 ```bash
 .claude/scripts/setup-worktree.sh continuous-learning phase3-visibility
 .claude/scripts/setup-worktree.sh ptsf-tools event-qr-codes
-.claude/scripts/setup-worktree.sh citation-manager ast-refactor
+.claude/scripts/setup-worktree.sh jact ast-refactor
 ```
 
 The script handles all phases automatically:
@@ -61,12 +61,12 @@ Worktrees use **self-contained naming** that includes repository context:
 
 **Components:**
 - `repo`: Repository name from `basename $(git rev-parse --show-toplevel)`
-- `scope`: Package/area being worked on (e.g., `ptsf-tools`, `citation-manager`, `core`)
+- `scope`: Package/area being worked on (e.g., `ptsf-tools`, `jact`, `core`)
 - `feature`: Feature name from plan file or user input (kebab-case)
 
 **Examples:**
 - `cc-workflows.worktree.ptsf-tools.event-qr-codes`
-- `cc-workflows.worktree.citation-manager.ast-refactor`
+- `cc-workflows.worktree.jact.ast-refactor`
 - `myapp.worktree.core.user-auth`
 
 **Branch name:** Same as worktree directory name, but use forward slashes for namespacing:
@@ -82,7 +82,7 @@ Worktrees are created as **sibling directories** to the main repository:
 ~/projects/
   ├── cc-workflows/                                          # Main repo
   ├── cc-workflows.worktree.ptsf-tools.event-qr-codes/     # Worktree 1
-  └── cc-workflows.worktree.citation-manager.ast-refactor/  # Worktree 2
+  └── cc-workflows.worktree.jact.ast-refactor/  # Worktree 2
 ```
 
 **Why sibling directories:**
@@ -138,7 +138,7 @@ Worktrees are created as **sibling directories** to the main repository:
    # Extracts: scope=ptsf-tools, feature=event-qr-codes
 
    if [[ -n "$PLAN_FILE_PATH" ]]; then
-     # Try to extract scope from path (e.g., packages/ptsf-tools or tools/citation-manager)
+     # Try to extract scope from path (e.g., packages/ptsf-tools or tools/jact)
      scope=$(echo "$PLAN_FILE_PATH" | grep -oP '(?:packages|tools)/\K[^/]+' | head -1)
 
      # Extract feature from plan filename (remove .md, convert to kebab-case)

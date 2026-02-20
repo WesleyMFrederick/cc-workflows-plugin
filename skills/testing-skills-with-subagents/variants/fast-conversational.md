@@ -24,7 +24,7 @@ This variant uses lightweight conversational logging colocated with the skill be
 **Log location:** `.claude/skills/{tested-skill}/logs/YYYYMMDD-HHMMSS-test-session/`
 
 **Determining tested skill:**
-- Read context from conversation: "testing the citation-manager skill" → `{tested-skill}` = `citation-manager`
+- Read context from conversation: "testing the jact skill" → `{tested-skill}` = `jact`
 - If unclear, ask user which skill is being tested
 - Use skill directory name exactly as it appears in `.claude/skills/`
 

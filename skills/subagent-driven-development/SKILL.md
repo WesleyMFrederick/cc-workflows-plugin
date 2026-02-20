@@ -98,7 +98,7 @@ Task tool (
 
     Extract your task from the plan:
     ```bash
-    citation-manager extract header {{plan-file-path}} "{{task-header-name}}"
+    jact extract header {{plan-file-path}} "{{task-header-name}}"
     ```
 
     Then follow any additional context-gathering steps specified in the task (e.g., pulling GH issues, reading related files).
@@ -207,7 +207,7 @@ Task tool (code-reviewer):
 
     1. Extract task from plan:
     ```bash
-    citation-manager extract header {{plan-file-path}} "{{task-header-name}}"
+    jact extract header {{plan-file-path}} "{{task-header-name}}"
     ```
 
     2. Follow any additional context-gathering steps in the task (e.g., GH issues).
@@ -395,7 +395,7 @@ Code-reviewer may identify BLOCKING when:
        CRITICAL: Extract task context from plan using citation tool:
 
        ```bash
-       citation-manager extract header {{plan-file-path}} "{{task-header-name}}"
+       jact extract header {{plan-file-path}} "{{task-header-name}}"
        ```
 
        Read context files:
@@ -494,7 +494,7 @@ Task tool (general-purpose):
     CRITICAL: Extract task context from plan using citation tool:
 
     ```bash
-    citation-manager extract header {{plan-file-path}} "{{task-header-name}}"
+    jact extract header {{plan-file-path}} "{{task-header-name}}"
     ```
 
     Read context files:
@@ -601,7 +601,7 @@ The orchestrator is a dispatcher. It reads TaskList and dispatches subagents. It
 
 | Excuse | Reality |
 |--------|---------|
-| "Let me read the plan first" | Subagent extracts its own task via citation-manager. |
+| "Let me read the plan first" | Subagent extracts its own task via jact. |
 | "Let me pull additional context" | Subagent self-gathers per plan instructions. |
 | "Let me check what's been done" | TaskList status tells you. Subagent explores if needed. |
 | "I need the BASE_SHA" | Subagent gets its own git state. |

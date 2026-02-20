@@ -5,7 +5,7 @@
 ## Reference Fixture
 
 Use the Markdown Parser Implementation Guide as exemplar:
-`tools/citation-manager/design-docs/component-guides/Markdown Parser Implementation Guide.md`
+`tools/jact/design-docs/component-guides/Markdown Parser Implementation Guide.md`
 
 The Problem section is ~65 words. The Solution section is ~95 words. This is the target pattern.
 

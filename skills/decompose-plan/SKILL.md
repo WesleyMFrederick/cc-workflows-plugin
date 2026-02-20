@@ -1,13 +1,13 @@
 ---
 name: decompose-plan
-description: Use when starting plan execution to decompose implementation plans into Claude Code Task tool tasks at H2 (Task) granularity - creates one task per plan task with citation-manager directives, keeping plan as source of truth
+description: Use when starting plan execution to decompose implementation plans into Claude Code Task tool tasks at H2 (Task) granularity - creates one task per plan task with jact directives, keeping plan as source of truth
 ---
 
 # Decompose Plan into Tasks
 
 ## Overview
 
-Parse implementation plan and create one Task tool task per H2 Task header. Tasks reference plan via citation-manager, keeping plan authoritative.
+Parse implementation plan and create one Task tool task per H2 Task header. Tasks reference plan via jact, keeping plan authoritative.
 
 **Core principle:** Plan is source of truth. Tasks are pointers, not copies.
 
@@ -23,10 +23,10 @@ Parse implementation plan and create one Task tool task per H2 Task header. Task
 
 ### Step 1: Parse Plan Structure
 
-Use citation-manager to extract H2 headers (Tasks):
+Use jact to extract H2 headers (Tasks):
 
 ```bash
-citation-manager extract header "{plan_path}" "Task 1"
+jact extract header "{plan_path}" "Task 1"
 ```
 
 Each `## Task N` becomes one Claude Code Task.
@@ -38,7 +38,7 @@ For EACH `## Task N` header, create a Task tool task:
 ```typescript
 TaskCreate({
   subject: "Task {N}: {task_title}",
-  description: `Fetch task details:\n\`citation-manager extract header "${plan_path}" "Task {N} - {task_title}"\`\n\nPlan: ${plan_path}`,
+  description: `Fetch task details:\n\`jact extract header "${plan_path}" "Task {N} - {task_title}"\`\n\nPlan: ${plan_path}`,
   activeForm: "{task_title}"
 })
 ```
@@ -52,7 +52,7 @@ TaskCreate({
 
 ```markdown
 Fetch task details:
-`citation-manager extract header "{plan_path}" "Task N - {task_title}"`
+`jact extract header "{plan_path}" "Task N - {task_title}"`
 
 Plan: {plan_path}
 ```

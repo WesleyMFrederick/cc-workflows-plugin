@@ -12,15 +12,15 @@ This eval will use the slow variant (worktree-based testing) to validate logging
 
 ### Baseline Scenario (RED Phase)
 
-**Test:** citation-manager skill with old logging behavior
-- Invoke testing-skills-with-subagents on citation-manager
-- Logs created at: `.claude/skills/testing-skills-with-subagents/logs/YYYYMMDD-HHMMSS-citation-manager/`
+**Test:** jact skill with old logging behavior
+- Invoke testing-skills-with-subagents on jact
+- Logs created at: `.claude/skills/testing-skills-with-subagents/logs/YYYYMMDD-HHMMSS-jact/`
 - **Result:** FAIL - logs in wrong location
 
 **Expected log structure:**
 
 ```
-.claude/skills/testing-skills-with-subagents/logs/YYYYMMDD-HHMMSS-citation-manager/
+.claude/skills/testing-skills-with-subagents/logs/YYYYMMDD-HHMMSS-jact/
 ├── scenario-01-baseline.log
 ├── scenario-02-baseline.log
 └── session-metadata.json
@@ -28,15 +28,15 @@ This eval will use the slow variant (worktree-based testing) to validate logging
 
 ### Green Scenario (GREEN Phase)
 
-**Test:** citation-manager skill with fixed logging behavior
-- Invoke testing-skills-with-subagents on citation-manager (with fix applied)
-- Logs created at: `.claude/skills/citation-manager/logs/YYYYMMDD-HHMMSS-test-session/`
+**Test:** jact skill with fixed logging behavior
+- Invoke testing-skills-with-subagents on jact (with fix applied)
+- Logs created at: `.claude/skills/jact/logs/YYYYMMDD-HHMMSS-test-session/`
 - **Result:** PASS - logs colocated with tested skill
 
 **Expected log structure:**
 
 ```
-.claude/skills/citation-manager/logs/YYYYMMDD-HHMMSS-test-session/
+.claude/skills/jact/logs/YYYYMMDD-HHMMSS-test-session/
 ├── scenario-01-baseline.log
 ├── scenario-02-baseline.log
 └── session-metadata.json
@@ -65,6 +65,6 @@ invoke testing-skills-with-subagents skill
 → Choose: Run eval scenario
 → Select: logging-location-dynamic
 
-# Verify logs appear in citation-manager's logs directory
-ls .claude/skills/citation-manager/logs/
+# Verify logs appear in jact's logs directory
+ls .claude/skills/jact/logs/
 ```

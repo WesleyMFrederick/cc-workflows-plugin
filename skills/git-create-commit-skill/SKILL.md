@@ -136,7 +136,7 @@ Commit descriptions follow the project's **Self-Contained Naming Principles** - 
 - ❌ `fix(auth): update code` - What code? What changed?
 - ✅ `fix(auth): prevent null pointer on missing OAuth state`
 - ✅ `feat(api): add email validation to login endpoint`
-- ✅ `feat(citation-manager): [US2.3] [Task 2.3.1] implement link extraction from markdown`
+- ✅ `feat(jact): [US2.3] [Task 2.3.1] implement link extraction from markdown`
 - ✅ `docs(readme): [US1.2] add installation instructions for CLI`
 
 ## Footer Management
@@ -329,7 +329,7 @@ fix(auth): fix OAuth null pointer error
 **Wrong:**
 
 ```text
-feat(citation-manager): implement link extraction from markdown
+feat(jact): implement link extraction from markdown
 
 Adds LinkExtractor component for US2.3.
 Part of Task 2.3.1 implementation.
@@ -338,7 +338,7 @@ Part of Task 2.3.1 implementation.
 **Right:**
 
 ```text
-feat(citation-manager): [US2.3] [Task 2.3.1] implement link extraction from markdown
+feat(jact): [US2.3] [Task 2.3.1] implement link extraction from markdown
 
 Adds LinkExtractor component to extract and parse markdown links from
 content for validation and content extraction phases.

@@ -11,7 +11,7 @@ Use the `managing-github-issues-skill` to create an issue.
 
 <arguments>
 - $1: Issue title
-- $2: Feature name (e.g., citation-manager)
+- $2: Feature name (e.g., jact)
 - $3: Component name in PascalCase (e.g., CitationValidator)
 - $4: Priority level (low | medium | high)
 </arguments>

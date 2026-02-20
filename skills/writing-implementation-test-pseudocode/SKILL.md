@@ -374,7 +374,7 @@ Developers can implement faster because they understand WHAT to test, WHY it mat
 ## Complete Example
 
 ```javascript
-// tools/citation-manager/test/integration/citation-validator-enrichment.test.js
+// tools/jact/test/integration/citation-validator-enrichment.test.js
 import { /* Vitest test functions */ } from "vitest";
 import { /* real system dependencies */ } from "...";
 

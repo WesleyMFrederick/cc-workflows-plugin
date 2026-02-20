@@ -187,7 +187,7 @@ Format: `- **D1: [Choice]** — [Rationale]. ^decision-name _([FR1](../prd.md#^F
 - Only add NEW decisions and adaptations in Mode 2
 
 **Use section-specific links between modes.**
-Links should target specific sections for `citation-manager extract header`:
+Links should target specific sections for `jact extract header`:
 
 ```markdown
 > **Mode 1 Context:**
@@ -270,7 +270,7 @@ NOT just `[Phase 1 Whiteboard](../whiteboard-mode1.md)` — section links enable
 
 1. **Read inputs:** Spec document + Sequencing document (ACs with FR traceability)
 2. **Read example:** Reference existing implementation plans in codebase for format
-   - Example: `tools/citation-manager/design-docs/features/.../epic7-cli-integration-implementation-plan.md`
+   - Example: `tools/jact/design-docs/features/.../epic7-cli-integration-implementation-plan.md`
 3. **Propose task list:** Present numbered tasks with 1-sentence descriptions
 4. **Get approval:** User approves task breakdown BEFORE detailed plan writing
 
@@ -369,7 +369,7 @@ Level: HIGH-LEVEL, GENERIC
 
 Mode 2: Research & Design (The Bridge)
 - Requirements exist, now adapt to our system
-- Gather: Read citation-manager code, git hooks, existing validation
+- Gather: Read jact code, git hooks, existing validation
 - Identify Gaps: No pre-commit validation, no link checker
 - Solutions Hypothesis: Add git hook calling validation script
 - Research Patterns: How do other tools do this? (remark-validate-links)

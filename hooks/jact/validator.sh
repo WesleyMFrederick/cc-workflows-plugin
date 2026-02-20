@@ -1,11 +1,11 @@
 #!/usr/bin/env bash
-# citation-validator.sh - Validates markdown files with citation-manager after edits/writes
+# citation-validator.sh - Validates markdown files with jact after edits/writes
 #
 # SYNOPSIS
 #   citation-validator.sh
 #
 # DESCRIPTION
-#   Automatically runs citation-manager validate on markdown files after Edit/Write operations.
+#   Automatically runs jact validate on markdown files after Edit/Write operations.
 #   Receives hook input via stdin from Claude Code PostToolUse event.
 #
 # EXIT CODES
@@ -27,9 +27,9 @@ if ! command -v jq &> /dev/null; then
     exit 1
 fi
 
-# Check if citation-manager is available
-if ! command -v citation-manager &> /dev/null; then
-    echo -e "${RED}[ERROR]${NC} citation-manager is required but not installed" >&2
+# Check if jact is available
+if ! command -v jact &> /dev/null; then
+    echo -e "${RED}[ERROR]${NC} jact is required but not installed" >&2
     exit 1
 fi
 
@@ -74,8 +74,8 @@ echo "" >&2
 echo -e "${BLUE}🔗 Citation Validation${NC} - Checking markdown citations..." >&2
 echo "────────────────────────────────────────────" >&2
 
-# Run citation-manager validate
-validation_output=$(citation-manager validate "$file_path" 2>&1)
+# Run jact validate
+validation_output=$(jact validate "$file_path" 2>&1)
 validation_exit_code=$?
 
 if [[ $validation_exit_code -eq 0 ]]; then
@@ -93,7 +93,7 @@ else
     echo -e "${RED}════════════════════════════════════════════${NC}" >&2
     echo -e "${YELLOW}📋 NEXT STEPS:${NC}" >&2
     echo -e "${YELLOW}  1. Fix the citation errors listed above${NC}" >&2
-    echo -e "${YELLOW}  2. Run 'citation-manager validate $file_path' to verify${NC}" >&2
+    echo -e "${YELLOW}  2. Run 'jact validate $file_path' to verify${NC}" >&2
     echo -e "${YELLOW}  3. Continue with your original task${NC}" >&2
 
     # Exit with code 2 to block and show stderr to Claude

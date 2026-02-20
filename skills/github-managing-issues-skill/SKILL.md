@@ -69,7 +69,7 @@ description: Use when creating, viewing, or labeling GitHub issues, when tempted
 | Category | Format | Examples |
 |----------|--------|----------|
 | Component | `component:<PascalName>` | `component:CitationValidator`, `component:MarkdownParser` |
-| Feature | `feature: <name>` | `feature: citation-manager` |
+| Feature | `feature: <name>` | `feature: jact` |
 | Priority | `priority:<level>` | `priority:low`, `priority:medium`, `priority:high` |
 | Type | `type:<category>` | `type:architecture`, `type:performance` |
 | Standard | lowercase | `bug`, `enhancement`, `tech-debt`, `documentation` |
@@ -131,7 +131,7 @@ Issue comments require **full blob paths**, not relative paths.
 **Example for this repo:**
 
 ```text
-/WesleyMFrederick/cc-workflows/blob/main/tools/citation-manager/README.md
+/WesleyMFrederick/cc-workflows/blob/main/tools/jact/README.md
 ```
 
 **URL Encoding:** Spaces become `%20` (e.g., `Markdown%20Link%20Flavors.md`)
@@ -250,7 +250,7 @@ For auditing multiple issues, you MUST use batch fetch:
 
 ```bash
 # ✅ CORRECT: Single batch command
-gh issue list --label "area:citation-manager" --json number,title,body,labels --state open
+gh issue list --label "area:jact" --json number,title,body,labels --state open
 
 # ✅ CORRECT: View reference issue for template
 gh issue view 62
@@ -461,7 +461,7 @@ gh issue edit 14 --body "$(cat <<'EOF'
 [Existing content preserved]
 
 ## Reproduction Steps
-1. Run citation-manager
+1. Run jact
 2. Observe link extraction
 
 ## Root Cause
@@ -539,7 +539,7 @@ EOF
 #### Step 1: Batch fetch all issues
 
 ```bash
-gh issue list --label "area:citation-manager" --json number,title,body,labels --state open > /tmp/issues.json
+gh issue list --label "area:jact" --json number,title,body,labels --state open > /tmp/issues.json
 ```
 
 #### Step 2: View reference issue
@@ -566,7 +566,7 @@ Citation links need to be extracted from markdown documents
 [Existing description content preserved here]
 
 ## Reproduction Steps
-1. Run citation-manager on document with links
+1. Run jact on document with links
 2. Observe link extraction behavior
 
 ## Root Cause

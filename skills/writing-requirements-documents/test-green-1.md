@@ -4,14 +4,14 @@
 Ask a subagent to write requirements documentation for the same feature **with** access to the writing-requirements-documents skill.
 
 ## Feature to Document
-**Feature**: Add export functionality to citation-manager that allows users to export validation reports to JSON format.
+**Feature**: Add export functionality to jact that allows users to export validation reports to JSON format.
 
 ## Instructions Given to Subagent
 
 ```text
 You have access to the writing-requirements-documents skill. Use it.
 
-Write a requirements document section for a new feature: "Export validation reports to JSON format in citation-manager."
+Write a requirements document section for a new feature: "Export validation reports to JSON format in jact."
 
 Include:
 1. A Requirements section with both Functional and Non-Functional requirements
@@ -49,7 +49,7 @@ The subagent successfully:
 ✅ **Wiki links for internal references** - Used [[#^FR1|FR1]] format for all cross-references
 ✅ **Correct ID format** - Used FR#, NFR#, US#-# format (not REQ-F#)
 ✅ **RFC 2119 keywords** - Consistently used SHALL for mandatory requirements
-✅ **Mentioned validation** - Referenced citation-manager validation in reflection
+✅ **Mentioned validation** - Referenced jact validation in reflection
 
 ### Comparison to Baseline
 
@@ -74,7 +74,7 @@ The skill successfully addressed all critical failures from the baseline test:
 
 1. **Subagent didn't show actual document** - Only provided reflection, not the full requirements text
 2. **TodoWrite usage unclear** - Skill mandates TodoWrite for validation checklist, but subagent didn't create todos in output
-3. **Template extraction not verified** - Can't confirm if subagent actually used citation-manager to extract examples
+3. **Template extraction not verified** - Can't confirm if subagent actually used jact to extract examples
 4. **Cross-document links not tested** - Need to test scenario with external document references
 
 ### Next Steps for REFACTOR

@@ -1,6 +1,6 @@
 ---
 name: writing-requirements-documents
-description: Use when creating requirements documents or PRDs - ensures Obsidian block anchors, wiki links for traceability, and citation-manager validation for link integrity
+description: Use when creating requirements documents or PRDs - ensures Obsidian block anchors, wiki links for traceability, and jact validation for link integrity
 ---
 
 # Writing Requirements Documents
@@ -125,7 +125,7 @@ Requirements follow a three-layer structure that progresses from motivation to s
 
 ### 5. Reference Template PRD
 
-Before writing, use citation-manager to extract template sections:
+Before writing, use jact to extract template sections:
 
 ```bash
 # Extract Requirements section
@@ -135,7 +135,7 @@ npm run citation:extract:header /path/to/template-prd.md -- "Requirements"
 npm run citation:extract:header /path/to/template-prd.md -- "Acceptance Criteria"
 ```
 
-**Template Source:** `/Users/wesleyfrederick/Documents/ObsidianVault/0_SoftwareDevelopment/cc-workflows/tools/citation-manager/design-docs/features/20251119-type-contract-restoration/typescript-migration-prd.md`
+**Template Source:** `/Users/wesleyfrederick/Documents/ObsidianVault/0_SoftwareDevelopment/cc-workflows/tools/jact/design-docs/features/20251119-type-contract-restoration/typescript-migration-prd.md`
 
 ## PRD Document Structure
 
@@ -307,10 +307,10 @@ After writing requirements documentation, create TodoWrite todos for:
 2. ☐ Verify every acceptance criterion has block anchor
 3. ☐ Verify all cross-references use wiki link syntax
 4. ☐ Run `npm run citation:validate <file-path>`
-5. ☐ Fix any broken links reported by citation-manager
+5. ☐ Fix any broken links reported by jact
 6. ☐ Re-run validation until zero errors
 
-**You MUST run citation-manager validate as the final step.** This is non-negotiable.
+**You MUST run jact validate as the final step.** This is non-negotiable.
 
 ## Common Mistakes
 
@@ -319,7 +319,7 @@ After writing requirements documentation, create TodoWrite todos for:
 | Plain text IDs (REQ-F1) | Not clickable, breaks navigation | Use `[[#^FR1\|FR1]]` |
 | Missing block anchors | Cannot create precise links | Add `^FR1` at end of line |
 | "Portability" rationalization | We use Obsidian for linked docs | Wiki links are our standard |
-| Skipping validation | Broken links in docs | Run citation-manager validate |
+| Skipping validation | Broken links in docs | Run jact validate |
 | Wrong ID format (REQ-F1) | Inconsistent with templates | Use FR1, NFR1, AC1 |
 | Missing Non-Goals section | Scope creep without boundaries | Always document what's excluded |
 | Requirements without categories | Hard to navigate large PRDs | Group NFRs by Quality, Maintainability, Process |
@@ -336,7 +336,7 @@ After writing requirements documentation, create TodoWrite todos for:
 🚩 "I'll validate the links manually"
 🚩 "Block anchors are extra work"
 🚩 "Plain text is more portable"
-🚩 Skipping citation-manager validate step
+🚩 Skipping jact validate step
 🚩 Using inconsistent ID formats
 🚩 Missing Non-Goals or Scope sections
 🚩 Detailed acceptance criteria in PRD (use Success Criteria instead)
@@ -352,7 +352,7 @@ After writing requirements documentation, create TodoWrite todos for:
 | "Plain text IDs are more portable for export to Word/PDF" | Requirements docs often get exported | We use Obsidian specifically for linked documentation. Portability is not our goal—traceability is. |
 | "Easier to reference REQ-F1 in conversations" | Plain text feels simpler | Wiki links display as text (FR1) but provide navigation. No conversation difference, huge usability gain. |
 | "This follows professional standards" | Generic requirements patterns | Professional ≠ Obsidian-optimized. We have specific standards for our workflow. |
-| "I can validate links manually or write a script" | Automation seems unnecessary | We already have citation-manager. Use it. Manual validation is error-prone. |
+| "I can validate links manually or write a script" | Automation seems unnecessary | We already have jact. Use it. Manual validation is error-prone. |
 | "Block anchors aren't necessary for simple docs" | Only complex docs need anchors | Every requirement needs traceability from day one. "Simple" docs become complex. |
 | "I'll add the anchors and links later" | Focus on content first | Never happens. Add them now or they'll be missing forever. |
 | "Non-Goals aren't needed for small PRDs" | Seems like overhead | Non-Goals prevent scope creep. Even small PRDs benefit from explicit boundaries. |
@@ -392,7 +392,7 @@ Related: See acceptance criteria in appendix.
 
 - **After brainstorming**: Use this skill to formalize design into PRD requirements
 - **Before writing-plans**: PRD requirements feed into implementation plans
-- **With citation-manager**: Always validate links before committing
+- **With jact**: Always validate links before committing
 
 ---
 

@@ -1,6 +1,6 @@
 ---
 name: evaluate-against-architecture-principles
-description: Use when user references architecture principles, at start of fresh conversation with design work, before creating any requirements/design/implementation documents, or when reviewing for compliance - grounds problem framing and solution making in all 9 principle categories using citation-manager to extract full context
+description: Use when user references architecture principles, at start of fresh conversation with design work, before creating any requirements/design/implementation documents, or when reviewing for compliance - grounds problem framing and solution making in all 9 principle categories using jact to extract full context
 ---
 
 # Evaluate Against Architecture Principles
@@ -55,7 +55,7 @@ When starting to create a new document:
 When evaluating an existing document:
 
 1. **Read principles** - Read [ARCHITECTURE-PRINCIPLES.md](../../../ARCHITECTURE-PRINCIPLES.md)
-2. **Extract citations** - Run `citation-manager extract links <file-path>` to get full context
+2. **Extract citations** - Run `jact extract links <file-path>` to get full context
 3. **Systematic evaluation** - Follow Evaluation Checklist below, checking ALL categories
 4. **Structured output** - Provide evaluation in standard format
 
@@ -70,7 +70,7 @@ Read [ARCHITECTURE-PRINCIPLES.md](../../../ARCHITECTURE-PRINCIPLES.md)
 **BEFORE evaluating ANY document, extract citation context:**
 
 ```bash
-citation-manager extract links <file-path>
+jact extract links <file-path>
 ```
 
 This command:
@@ -80,7 +80,7 @@ This command:
 
 **Do NOT skip this step.** Evaluating without citation context = incomplete evaluation.
 
-**If citation-manager finds 0 links:**
+**If jact finds 0 links:**
 - This is still useful information (no related docs to consider)
 - Document this in your evaluation report
 - Continue with systematic evaluation
@@ -98,7 +98,7 @@ This is not optional. TodoWrite ensures:
 Check EVERY category systematically.
 
 ### Phase 1: Extract Context
-- [ ] Run `citation-manager extract links <file-path>`
+- [ ] Run `jact extract links <file-path>`
 - [ ] Read all extracted content
 - [ ] Identify document type (Requirements/Design/Implementation)
 

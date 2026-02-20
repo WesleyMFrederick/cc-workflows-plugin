@@ -52,7 +52,7 @@ if [ "$skills_with_logs" -eq 0 ]; then
   echo "   Once Story 2.3 is implemented, run:"
   echo "   → testing-skills-with-subagents skill"
   echo "   → Fast variant"
-  echo "   → Test a skill (e.g., citation-manager)"
+  echo "   → Test a skill (e.g., jact)"
   echo ""
   echo "   Then logs should appear in:"
   echo "   → .claude/skills/{skill-name}/logs/YYYYMMDD-HHMMSS-test-session/"

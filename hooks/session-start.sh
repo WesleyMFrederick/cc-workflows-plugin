@@ -74,7 +74,7 @@ ${status_content}
 <current-status-instructions>
 Session-scoped status tracking. When resuming:
 1. Find your session in active_sessions by session_id
-2. Check plan_path - use citation-manager to extract current task context
+2. Check plan_path - use jact to extract current task context
 3. Update your session's last_active_at on each interaction
 4. Derive resume context from plan file (DRY - don't store stale instructions)
 </current-status-instructions>

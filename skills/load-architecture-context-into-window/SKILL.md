@@ -24,23 +24,23 @@ This skill loads comprehensive architecture context to ground your work against 
 
 ### Step 1: Load Architecture Principles
 
-Use citation-manager to extract the complete principles document:
+Use jact to extract the complete principles document:
 
 ```bash
-citation-manager extract file ARCHITECTURE-PRINCIPLES.md
+jact extract file ARCHITECTURE-PRINCIPLES.md
 ```
 
 Read and internalize all principle categories to understand project architectural standards.
 
 ### Step 2: Load Core Conventions
 
-Use citation-manager to extract each core convention section from ARCHITECTURE.md:
+Use jact to extract each core convention section from ARCHITECTURE.md:
 
 ```bash
-citation-manager extract header ARCHITECTURE.md "Code Organization and Structure"
-citation-manager extract header ARCHITECTURE.md "Development Workflow"
-citation-manager extract header ARCHITECTURE.md "Coding Standards and Conventions"
-citation-manager extract header ARCHITECTURE.md "Testing Strategy"
+jact extract header ARCHITECTURE.md "Code Organization and Structure"
+jact extract header ARCHITECTURE.md "Development Workflow"
+jact extract header ARCHITECTURE.md "Coding Standards and Conventions"
+jact extract header ARCHITECTURE.md "Testing Strategy"
 ```
 
 Read each section to understand how conventions apply to your current work.

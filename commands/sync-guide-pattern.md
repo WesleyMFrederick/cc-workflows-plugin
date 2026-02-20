@@ -14,7 +14,7 @@ Synchronize component implementation guides with whiteboard pattern documentatio
 - $3: Direction - "guide" (update guide from whiteboard) or "whiteboard" (update whiteboard from guides)
 - $4: Sources (Only if direction=whiteboard) - comma-separated component names
 
-**Hardcoded**: Tool = citation-manager
+**Hardcoded**: Tool = jact
 
 ## Input Validation
 
@@ -22,7 +22,7 @@ Synchronize component implementation guides with whiteboard pattern documentatio
 
 If $1 is empty:
 
-1. List available guides: `ls "tools/citation-manager/design-docs/component-guides/" | grep "Implementation Guide.md"`
+1. List available guides: `ls "tools/jact/design-docs/component-guides/" | grep "Implementation Guide.md"`
 2. Use `AskUserQuestion` with discovered guides as options (multiSelect: false):
    - Options should include: MarkdownParser, CitationValidator, ContentExtractor, ParsedDocument, ParsedFileCache, CLI Orchestrator
 
@@ -62,15 +62,15 @@ Use `AskUserQuestion` with component list as options (multiSelect: true):
 
 After collecting arguments, resolve paths:
 
-- **Guide**: `/Users/wesleyfrederick/Documents/ObsidianVault/0_SoftwareDevelopment/cc-workflows/tools/citation-manager/design-docs/component-guides/$1 Implementation Guide.md`
+- **Guide**: `/Users/wesleyfrederick/Documents/ObsidianVault/0_SoftwareDevelopment/cc-workflows/tools/jact/design-docs/component-guides/$1 Implementation Guide.md`
 - **Whiteboard**: `/Users/wesleyfrederick/Documents/ObsidianVault/0_SoftwareDevelopment/cc-workflows/design-docs/features/20251129-component-implementation-guide-skill/1-elicit-discover-sense-make-problem-frame/whiteboard-discovery.md`
 
 ## Extraction
 
-Use citation-manager to extract content from source:
+Use jact to extract content from source:
 
-- For specific section: `citation-manager extract header "<file>" "$2"`
-- For full file: `citation-manager extract file "<file>"`
+- For specific section: `jact extract header "<file>" "$2"`
+- For full file: `jact extract file "<file>"`
 
 Read both the source and target files to compare.
 
@@ -125,7 +125,7 @@ If user selects "Apply selected changes", use another `AskUserQuestion` with eac
 
 ## Error Handling
 
-If component not found: "Error: Component '$1' not found in tools/citation-manager/design-docs/component-guides/. Available: [list discovered guides]"
+If component not found: "Error: Component '$1' not found in tools/jact/design-docs/component-guides/. Available: [list discovered guides]"
 
 If direction invalid: "Error: Direction must be 'guide' or 'whiteboard', got '$3'"
 

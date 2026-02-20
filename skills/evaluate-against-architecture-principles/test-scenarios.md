@@ -9,7 +9,7 @@
 **Expected WITHOUT skill:**
 - Agent does surface-level review
 - Misses principles violations
-- Doesn't use citation-manager to extract linked context
+- Doesn't use jact to extract linked context
 - Provides generic feedback without principle references
 - Doesn't systematically check all principle categories
 
@@ -21,7 +21,7 @@
 
 **Expected WITHOUT skill:**
 - Agent confirms without deep analysis
-- Doesn't extract citation context with citation-manager
+- Doesn't extract citation context with jact
 - Misses violations in linked documents
 - Provides approval-seeking feedback
 - No systematic principle-by-principle evaluation

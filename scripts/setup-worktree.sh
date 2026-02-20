@@ -1,14 +1,14 @@
 #!/usr/bin/env bash
 # Automated git worktree setup following git-using-worktrees skill
 # Usage: setup-worktree.sh <scope> <feature>
-# Example: setup-worktree.sh citation-manager ast-refactor
+# Example: setup-worktree.sh jact ast-refactor
 
 set -euo pipefail
 
 # Self-contained naming principles: clear error messages
 usage() {
   echo "Usage: $0 <scope> <feature>"
-  echo "Example: $0 citation-manager ast-refactor"
+  echo "Example: $0 jact ast-refactor"
   echo ""
   echo "Creates: repo.worktree.scope.feature in sibling directory"
   echo "Branch: scope/feature"

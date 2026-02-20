@@ -4,12 +4,12 @@
 Ask a subagent to write requirements documentation for a simple feature **without** access to the writing-requirements-documents skill.
 
 ## Feature to Document
-**Feature**: Add export functionality to citation-manager that allows users to export validation reports to JSON format.
+**Feature**: Add export functionality to jact that allows users to export validation reports to JSON format.
 
 ## Instructions Given to Subagent
 
 ```text
-Write a requirements document section for a new feature: "Export validation reports to JSON format in citation-manager."
+Write a requirements document section for a new feature: "Export validation reports to JSON format in jact."
 
 Include:
 1. A Requirements section with both Functional and Non-Functional requirements
@@ -24,7 +24,7 @@ Follow professional requirements documentation standards.
 - [ ] Missing block anchors on requirements
 - [ ] Missing block anchors on acceptance criteria
 - [ ] Incorrect or missing wiki link syntax for internal references
-- [ ] No use of citation-manager validate for link verification
+- [ ] No use of jact validate for link verification
 - [ ] Poor traceability between requirements and acceptance criteria
 - [ ] Inconsistent requirement numbering
 - [ ] Vague or untestable requirements
@@ -76,7 +76,7 @@ The subagent produced a professional requirements document with:
 - **Severity**: High - breaks pattern consistency
 
 #### ✗ FAILURE 4: No Citation Manager Validation
-- **Expected**: Final step should include running `citation-manager validate` to verify all links
+- **Expected**: Final step should include running `jact validate` to verify all links
 - **Actual**: No mention of validation in process or reflection
 - **Impact**: Broken links could be committed to documentation
 - **Severity**: High - no quality gate for link integrity
@@ -88,7 +88,7 @@ The subagent produced a professional requirements document with:
 - **Severity**: Medium - reduces requirement clarity
 
 #### ✗ FAILURE 6: No Reference to Template Source
-- **Expected**: Should reference the PRD template and use citation-manager to extract examples
+- **Expected**: Should reference the PRD template and use jact to extract examples
 - **Actual**: Created from scratch without using established templates
 - **Impact**: Inconsistent structure and formatting
 - **Severity**: Medium - wheel reinvention
@@ -112,7 +112,7 @@ The subagent's reflection revealed key rationalization patterns:
 
 4. **Implicit: "Links can be validated manually"**
    - Suggested manual validation or custom tooling
-   - Counter: We have citation-manager for automated validation
+   - Counter: We have jact for automated validation
 
 5. **Implicit: "Block anchors aren't necessary"**
    - Never mentioned or considered block anchors
@@ -123,7 +123,7 @@ The subagent's reflection revealed key rationalization patterns:
 - [x] Missing block anchors on requirements
 - [x] Missing block anchors on acceptance criteria
 - [x] Incorrect or missing wiki link syntax for internal references
-- [x] No use of citation-manager validate for link verification
+- [x] No use of jact validate for link verification
 - [x] Poor traceability between requirements and acceptance criteria (plain text only)
 - [x] Inconsistent requirement numbering (used REQ-F# instead of FR#)
 - [x] Vague or untestable requirements (mostly okay, but some ambiguity)
@@ -136,8 +136,8 @@ The skill must:
 1. **Mandate block anchors** - Make it explicit that EVERY requirement and acceptance criterion needs an anchor
 2. **Mandate wiki links** - Explain why Obsidian linking is non-negotiable for our workflow
 3. **Provide exact ID format** - Show FR#, NFR#, Epic #, US#.# patterns
-4. **Require citation-manager validation** - Make it a mandatory final step with TodoWrite checklist
-5. **Reference template PRD** - Show how to use citation-manager extract to get examples
+4. **Require jact validation** - Make it a mandatory final step with TodoWrite checklist
+5. **Reference template PRD** - Show how to use jact extract to get examples
 6. **Counter portability rationalization** - Address "but plain text is more portable" argument directly
 7. **Show SHALL/should/may usage** - Provide clear examples of RFC 2119 keywords
 

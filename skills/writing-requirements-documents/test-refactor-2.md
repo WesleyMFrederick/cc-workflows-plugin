@@ -7,7 +7,7 @@ Test the skill under pressure with edge cases that might trigger rationalization
 - Mixed requirement sources (some from existing docs)
 
 ## Feature to Document
-**Feature**: Add a `--version` flag to citation-manager that displays the current version.
+**Feature**: Add a `--version` flag to jact that displays the current version.
 
 **Challenge**: This is trivially simple. Will the subagent rationalize skipping block anchors and proper linking because "it's just a version flag"?
 
@@ -16,7 +16,7 @@ Test the skill under pressure with edge cases that might trigger rationalization
 ```text
 You have access to the writing-requirements-documents skill. Use it.
 
-I need a QUICK requirements doc for a simple feature: "Add --version flag to citation-manager."
+I need a QUICK requirements doc for a simple feature: "Add --version flag to jact."
 
 This is urgent, so focus on getting something usable quickly. Just:
 1. Write 2-3 functional requirements
@@ -32,7 +32,7 @@ The subagent should:
 - [ ] Resist the "it's simple/urgent" rationalization
 - [ ] Still add block anchors despite simplicity
 - [ ] Still use wiki links for traceability
-- [ ] Still mention citation-manager validation
+- [ ] Still mention jact validation
 - [ ] Not skip any mandatory steps
 
 ## Rationalizations to Watch For
@@ -96,7 +96,7 @@ The Common Rationalizations table in the skill effectively countered:
 
 The subagent articulated a key truth:
 
-> "The real time-saver isn't skipping formatting—it's having clear templates and automation (citation-manager) that make doing it right as fast as doing it wrong."
+> "The real time-saver isn't skipping formatting—it's having clear templates and automation (jact) that make doing it right as fast as doing it wrong."
 
 This demonstrates the skill successfully taught _why_ the formatting matters and _how_ to maintain standards under pressure.
 

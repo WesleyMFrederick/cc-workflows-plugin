@@ -17,7 +17,7 @@ Extracts a package from cc-workflows into a standalone GitHub repo with full com
 
 Answer all questions BEFORE touching anything:
 
-- [ ] **Package path**: What is the package path in cc-workflows? (e.g., `tools/citation-manager/`)
+- [ ] **Package path**: What is the package path in cc-workflows? (e.g., `tools/jact/`)
 - [ ] **New repo name**: What is the new GitHub repo name? (e.g., `jact`)
 - [ ] **Package identity**: What should the npm package name and CLI bin be? (may differ from repo name)
 - [ ] **`git filter-repo` installed?**

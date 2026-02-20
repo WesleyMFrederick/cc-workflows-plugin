@@ -21,7 +21,7 @@ Arguments: $1 $2
 4. Gather additional context
 
    ```bash
-   citation-manager extract links $1
+   jact extract links $1
    ```
 
 5. Use steps 2-4 to ground your design discussion

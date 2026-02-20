@@ -32,15 +32,15 @@ TRACE: extractor hook (PostToolUse:Read)
 ═══════════════════════════════════════
 
  3. [O: extractor.sh:34-45]
-    Resolve: citation-manager binary
+    Resolve: jact binary
     FAIL → exit 0 (silent skip)
 
  HOOK → CLI (boundary crossing)
  ──────────────────────────────
  6. [O: extractor.sh:92]
-    CALL ──→ citation-manager extract links "$file_path"
+    CALL ──→ jact extract links "$file_path"
     │
-    │  6d. [O: citation-manager.ts:466]
+    │  6d. [O: jact.ts:466]
     │      console.log(JSON.stringify(result, null, 2))
     │      ├── extractedContentBlocks  (50KB)  [M]
     │      ├── outgoingLinksReport     (44KB)  [M]

@@ -5,11 +5,11 @@
 #   citation-extractor.sh
 #
 # DESCRIPTION
-#   Automatically runs citation-manager extract links on markdown files after Read operations.
+#   Automatically runs jact extract links on markdown files after Read operations.
 #   Injects extracted content as context for Claude via JSON hookSpecificOutput.
 #   Receives hook input via stdin from Claude Code PostToolUse event.
 #
-#   Passes --session to citation-manager for session-based caching (cache logic
+#   Passes --session to jact for session-based caching (cache logic
 #   lives in the tool, not the hook).
 #
 # EXIT CODES
@@ -30,17 +30,17 @@ if ! command -v jq &> /dev/null; then
 fi
 echo "jq: available" >> "$DEBUG_LOG"
 
-# Resolve citation-manager: prefer local build, fallback to global
+# Resolve jact: prefer local build, fallback to global
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-LOCAL_CM="$SCRIPT_DIR/../../../tools/citation-manager/dist/citation-manager.js"
+LOCAL_CM="$SCRIPT_DIR/../../../dist/jact.js"
 if [[ -f "$LOCAL_CM" ]]; then
     CM_CMD="node $LOCAL_CM"
-    echo "citation-manager: local build ($LOCAL_CM)" >> "$DEBUG_LOG"
-elif command -v citation-manager &> /dev/null; then
-    CM_CMD="citation-manager"
-    echo "citation-manager: global" >> "$DEBUG_LOG"
+    echo "jact: local build ($LOCAL_CM)" >> "$DEBUG_LOG"
+elif command -v jact &> /dev/null; then
+    CM_CMD="jact"
+    echo "jact: global" >> "$DEBUG_LOG"
 else
-    echo "EXIT: citation-manager not available" >> "$DEBUG_LOG"
+    echo "EXIT: jact not available" >> "$DEBUG_LOG"
     exit 0
 fi
 
@@ -87,7 +87,7 @@ if [[ ! -f "$file_path" ]]; then
 fi
 echo "file exists: yes" >> "$DEBUG_LOG"
 
-# Run citation-manager extract links — capture exit code separately from output
+# Run jact extract links — capture exit code separately from output
 echo "Running: $CM_CMD extract links $file_path --session $session_id" >> "$DEBUG_LOG"
 raw_output=$($CM_CMD extract links "$file_path" --session "$session_id" 2>/dev/null)
 cm_exit_code=$?

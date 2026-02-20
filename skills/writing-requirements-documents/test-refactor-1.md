@@ -8,7 +8,7 @@ Test the skill with a complex scenario involving:
 - Both internal and external links
 
 ## Feature to Document
-**Feature**: Add a plugin system to citation-manager that allows users to create custom validation rules and formatters.
+**Feature**: Add a plugin system to jact that allows users to create custom validation rules and formatters.
 
 This feature requires:
 - Reference to architecture document for plugin architecture
@@ -20,7 +20,7 @@ This feature requires:
 ```text
 You have access to the writing-requirements-documents skill. Use it.
 
-Write requirements documentation for: "Add plugin system to citation-manager for custom validation rules and formatters."
+Write requirements documentation for: "Add plugin system to jact for custom validation rules and formatters."
 
 Requirements:
 1. Create Requirements section (FR and NFR)

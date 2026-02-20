@@ -6,7 +6,7 @@ Ran 3 baseline scenarios WITHOUT the skill:
 
 ### Scenario 1: Time Pressure
 **Result:** Agent performed well but not systematic
-- ✅ Used citation-manager to extract links
+- ✅ Used jact to extract links
 - ✅ Identified major violations
 - ✅ Referenced specific principles
 - ❌ Focused only on "most relevant" principles
@@ -17,7 +17,7 @@ Ran 3 baseline scenarios WITHOUT the skill:
 
 ### Scenario 2: Confirmation Bias
 **Result:** Agent was thorough but still not systematic
-- ✅ Attempted citation-manager (though it failed on wiki-links in code blocks)
+- ✅ Attempted jact (though it failed on wiki-links in code blocks)
 - ✅ Identified 6 violation categories
 - ✅ Provided detailed feedback with principle citations
 - ❌ Still didn't check ALL principle categories
@@ -55,7 +55,7 @@ Ran 3 baseline scenarios WITHOUT the skill:
 
 ## What the Skill Must Address
 
-1. **MANDATORY citation-manager first** - Extract all linked context before evaluation
+1. **MANDATORY jact first** - Extract all linked context before evaluation
 2. **Systematic checklist** - All principle categories, no skipping
 3. **Structured output format** - Table or checklist showing what was checked
 4. **No relevance filtering** - Check all categories, mark "N/A - not mentioned" if truly not applicable

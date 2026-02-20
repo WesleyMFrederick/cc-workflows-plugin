@@ -7,7 +7,7 @@ description: Use when creating or developing anything, before writing code or im
 
 ## Inputs
 <critical-instructions>
-- Gather context on project file/folder conventions by using `citation-manager extract header` tool on `ARCHITECTURE.md` in root, header = "Code Organization and Structure"
+- Gather context on project file/folder conventions by using `jact extract header` tool on `ARCHITECTURE.md` in root, header = "Code Organization and Structure"
 - Gather link context on file by using `npm run citation:extract:content {{this-file-path}}`
 </critical-instructions>
 

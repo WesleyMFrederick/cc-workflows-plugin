@@ -300,11 +300,11 @@ After writing design documentation, create TodoWrite todos for:
 4. [ ] Verify file inventory lists ALL new and modified files
 5. [ ] Run `evaluate-against-architecture-principles` on design doc
 6. [ ] Filter architecture findings through MVP lens
-7. [ ] Run `citation-manager validate <design-doc-path>`
-8. [ ] Fix any broken links reported by citation-manager
+7. [ ] Run `jact validate <design-doc-path>`
+8. [ ] Fix any broken links reported by jact
 9. [ ] Re-run validation until zero errors
 
-**You MUST run both architecture evaluation and citation-manager validate.** Non-negotiable.
+**You MUST run both architecture evaluation and jact validate.** Non-negotiable.
 
 ## Common Mistakes
 

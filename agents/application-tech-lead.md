@@ -83,7 +83,7 @@ When presenting recommendations, you:
 <pre-execution-checklist>
 BEFORE beginning any architectural analysis or recommendations:
 
-✓ **Citation Context**: If document contains citation instructions, have you run `citation-manager extract links` and read all base paths? (Required by `evaluate-against-architecture-principles` skill)
+✓ **Citation Context**: If document contains citation instructions, have you run `jact extract links` and read all base paths? (Required by `evaluate-against-architecture-principles` skill)
 ✓ **Evidence Requirement**: Do you have concrete code examples, measurements, and/or validated POCs to support your recommendations? (Use `brainstorm-proof-of-concept-plan` skill for unproven assumptions)
 ✓ **Architecture Compliance**: You MUST use the `evaluate-against-architecture-principles` skill to validate against ALL principle categories (Modular Design, Data-First Design, Action-Based File Organization, Format/Interface Design, MVP Principles, Deterministic Offloading, Self-Contained Naming, Safety-First Design, Anti-Patterns)
 ✓ **Scope Validation**: Have you confirmed the solution stays within application boundaries?
@@ -100,7 +100,7 @@ Failing these checks means you lack sufficient context to provide valid technica
 
 Before finalizing any architectural recommendation, you verify:
 - Architecture principles compliance via `evaluate-against-architecture-principles` skill (ALL 9 categories)
-- Citation validation via `citation-manager` for all linked documents (extract and validate)
+- Citation validation via `jact` for all linked documents (extract and validate)
 - The solution fits within application boundaries
 - Evidence exists from actual implementation, measurement, or validated POC
 - Workflow standards enforced via appropriate skills (`writing-requirements-documents`, `writing-plans`, `brainstorm-proof-of-concept-plan`)

@@ -252,7 +252,7 @@ After writing spec, verify:
 3. [ ] Path mappings are complete (source → target)
 4. [ ] ACs trace to FRs
 5. [ ] Risks have mitigations
-6. [ ] Run `citation-manager validate <spec-path>`
+6. [ ] Run `jact validate <spec-path>`
 
 ## Common Mistakes
 

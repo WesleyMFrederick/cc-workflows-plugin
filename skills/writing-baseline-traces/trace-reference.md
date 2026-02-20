@@ -29,8 +29,8 @@ TRACE: extractor hook (PostToolUse:Read)
     FAIL → exit 0 (silent skip)
 
  3. [O: extractor.sh:34-45]
-    Resolve: citation-manager binary
-    Try: local build (dist/citation-manager.js)
+    Resolve: jact binary
+    Try: local build (dist/jact.js)
     Fallback: global CLI
     FAIL → exit 0 (silent skip)
 
@@ -46,16 +46,16 @@ TRACE: extractor hook (PostToolUse:Read)
  HOOK → CLI (boundary crossing)
  ──────────────────────────────
  6. [O: extractor.sh:92]
-    CALL ──→ citation-manager extract links "$file_path" --session "$session_id"
+    CALL ──→ jact extract links "$file_path" --session "$session_id"
     │
     │  CLI: PARSE ARGS
     │  ────────────────
-    │  6a. [O: citation-manager.ts:1131-1291]
+    │  6a. [O: jact.ts:1131-1291]
     │      Commander.js parses: extract links <file> --session <id>
     │
     │  CLI: ORCHESTRATE
     │  ────────────────
-    │  6b. [O: citation-manager.ts:429-480]
+    │  6b. [O: jact.ts:429-480]
     │      extractLinks() → validate links → extract content
     │
     │  CLI: EXTRACT + DEDUPLICATE
@@ -65,14 +65,14 @@ TRACE: extractor hook (PostToolUse:Read)
     │
     │  CLI: OUTPUT
     │  ───────────
-    │  6d. [O: citation-manager.ts:466]
+    │  6d. [O: jact.ts:466]
     │      console.log(JSON.stringify(result, null, 2))
     │      ├── extractedContentBlocks  (50KB)  [M]
     │      ├── outgoingLinksReport     (44KB)  [M]
     │      └── stats                   (124B)  [M]
     │      TOTAL: 94KB to stdout               [M]
     │
-    │  6e. [O: citation-manager.ts:exit codes]
+    │  6e. [O: jact.ts:exit codes]
     │      Exit: 0 (success) | 1 (no content) | 2 (error)
     │
     RETURN ←── stdout (94KB JSON) + exit code

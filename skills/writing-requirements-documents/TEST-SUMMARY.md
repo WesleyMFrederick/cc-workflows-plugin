@@ -14,7 +14,7 @@ This skill was developed using Test-Driven Development (RED-GREEN-REFACTOR) as m
 
 ### Baseline Test (RED) - test-baseline-1.md
 
-**Scenario**: Simple feature (JSON export for citation-manager)
+**Scenario**: Simple feature (JSON export for jact)
 **Result**: 6 critical failures
 
 | Failure | Severity | Description |
@@ -22,7 +22,7 @@ This skill was developed using Test-Driven Development (RED-GREEN-REFACTOR) as m
 | No block anchors | Critical | Requirements and ACs had no block anchors (`^FR1`) |
 | Plain text references | Critical | Used "REQ-F1" instead of `[[#^FR1\|FR1]]` |
 | Wrong ID format | High | Used REQ-F1, REQ-NF1 instead of FR1, NFR1 |
-| No validation | High | Never mentioned citation-manager validate |
+| No validation | High | Never mentioned jact validate |
 | Inconsistent SHALL/should | Medium | RFC 2119 keywords used inconsistently |
 | No template reference | Medium | Created from scratch, didn't use templates |
 
@@ -85,7 +85,7 @@ This skill was developed using Test-Driven Development (RED-GREEN-REFACTOR) as m
 - ✅ Articulated why standards matter under pressure
 
 **Key Quote from Subagent**:
-> "The real time-saver isn't skipping formatting—it's having clear templates and automation (citation-manager) that make doing it right as fast as doing it wrong."
+> "The real time-saver isn't skipping formatting—it's having clear templates and automation (jact) that make doing it right as fast as doing it wrong."
 
 ## Coverage Matrix
 
@@ -129,7 +129,7 @@ The Common Rationalizations table successfully countered:
 - [x] Red flags list captures warning signs
 - [x] Examples show before/after clearly
 - [x] Quick Reference table is accurate
-- [x] Integration with citation-manager documented
+- [x] Integration with jact documented
 - [x] Template PRD path provided
 - [x] TodoWrite integration explained
 - [x] Skill is bulletproof against rationalization

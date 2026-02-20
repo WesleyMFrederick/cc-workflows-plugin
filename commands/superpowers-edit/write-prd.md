@@ -1,5 +1,5 @@
 ---
-description: "Use when creating requirements documents, PRDs, or epics with user stories - ensures Obsidian block anchors, wiki links for traceability, and citation-manager validation for link integrity"
+description: "Use when creating requirements documents, PRDs, or epics with user stories - ensures Obsidian block anchors, wiki links for traceability, and jact validation for link integrity"
 argument-hint: "<whiteboard-file-path> (Optional)"
 ---
 
@@ -21,7 +21,7 @@ Arguments: $1
 3. Gather additional context
 
    ```bash
-   citation-manager extract links $1
+   jact extract links $1
    ```
 
 4. Use steps 2-3 to ground your requirements document creation

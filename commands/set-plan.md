@@ -38,7 +38,7 @@ Register the specified file as this session's active plan in `current-status.jso
 
 ## Example
 
-Input: `/set-plan tools/citation-manager/design-docs/features/20251119-type-contract-restoration/typescript-migration-sequencing.md`
+Input: `/set-plan tools/jact/design-docs/features/20251119-type-contract-restoration/typescript-migration-sequencing.md`
 
 Result — two Edit tool calls targeting this session in `current-status.json`:
 - `plan_path` → `"/Users/.../typescript-migration-sequencing.md"`
