@@ -394,6 +394,19 @@ Parent repo: git status shows " M .claude"
   └─ Step 6: git commit                     (commit pointer update in parent, full format)
 ```
 
+### Edge Case: Hub Has Newer Commits
+
+When files are edited directly in the hub repo (e.g., editing a skill in `cc-workflows-plugin/` rather than through a consumer's `.claude/` submodule), the submodule's push will be rejected because the hub is ahead.
+
+**Fix:** Pull with rebase inside the submodule before pushing:
+
+```text
+  ├─ git -C .claude pull --rebase <remote> main   (rebase onto hub's new commits)
+  └─ git -C .claude push <remote> main             (now succeeds)
+```
+
+**Common trigger:** Editing skill/agent files via their hub repo path instead of the submodule path. Both paths point to the same content, but only one updates the hub's HEAD directly.
+
 ### Pushing to GitHub (Backup Only)
 
 GitHub is backup. Push explicitly when desired:
