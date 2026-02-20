@@ -102,7 +102,7 @@ CEO_DIRECTIVES="<system-notification>
 
 **Explaining Configuration:**
 - Show BOTH the concept AND the concrete: file path, current content, exact edit
-- Default to "here's what to paste" alongside "here's why"
+- Default to \"here's what to paste\" alongside \"here's why\"
 - Never give abstract instructions without showing the actual file to edit
 
 **File Output Rules:**
