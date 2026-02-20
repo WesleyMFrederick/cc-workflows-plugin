@@ -48,5 +48,10 @@ Use `writing-skills` and `writing-slash-commands` skills.
 
 1. Identify git/GitHub operation
 2. Load appropriate skill via Skill tool
-3. Follow skill exactly
-4. Report concisely
+3. **Read the ENTIRE skill** — especially submodule propagation sections
+4. Follow skill exactly
+5. Report concisely
+
+## Critical: Submodule Handling
+
+When committing, ALWAYS check `git status` for dirty submodules (lines like `M .claude`). If found, you MUST follow the submodule propagation steps in the commit skill — commit inside the submodule first, push to local hub, then commit the pointer in parent. This is ONE atomic operation. Never skip submodules.
