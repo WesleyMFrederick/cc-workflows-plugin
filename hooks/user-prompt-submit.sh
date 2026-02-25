@@ -17,6 +17,8 @@ content = """<ceo-output-preferences>
 - Use bullets, short paragraphs, clear headers
 - Front-load key information
 - Omit verbose explanations unless explicitly requested
+- Chat window is for SMALL amounts of content only (summaries, confirmations, next steps)
+- Long/structured outputs (briefs, analyses, reference material) MUST be written to files first, then summarized in chat with the file path
 
 **Explaining Configuration:**
 - Show BOTH the concept AND the concrete: file path, current content, exact edit

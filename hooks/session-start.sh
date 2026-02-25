@@ -11,6 +11,9 @@ PROJECT_ROOT="$(cd "${SCRIPT_DIR}/../.." && pwd)"
 GH_SETUP="${SCRIPT_DIR}/gh/setup.sh"
 [[ -x "$GH_SETUP" ]] && "$GH_SETUP" >/dev/null 2>&1 || true
 
+# Read artifact catalog for active job search
+artifact_catalog_content=$(cat "${PROJECT_ROOT}/data/2026/Bain/artifact-catalog.md" 2>/dev/null || echo "")
+
 # Read using-superpowers content
 using_superpowers_content=$(cat "${PROJECT_ROOT}/.claude/skills/using-superpowers/SKILL.md" 2>&1 || echo "Error reading using-superpowers skill")
 
@@ -95,7 +98,9 @@ You have superpowers.
 **The content below is from .claude/skills/using-superpowers/SKILL.md - your introduction to using skills:**
 
 ${using_superpowers_content}
-</EXTREMELY_IMPORTANT>"
+</EXTREMELY_IMPORTANT>
+
+${artifact_catalog_content}"
 
 # Output context injection as JSON using jq for proper escaping
 jq -n \
