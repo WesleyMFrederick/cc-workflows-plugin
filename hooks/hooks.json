@@ -40,15 +40,6 @@
 						"command": "${CLAUDE_PROJECT_ROOT}/.claude/hooks/jact/validator.sh"
 					}
 				]
-			},
-			{
-				"matcher": "TaskCreate|TaskUpdate",
-				"hooks": [
-					{
-						"type": "command",
-						"command": "${CLAUDE_PROJECT_ROOT}/.claude/hooks/status/task-sync.sh"
-					}
-				]
 			}
 		]
 	}

@@ -132,7 +132,8 @@ Copy this checklist to track progress:
 
 ```markdown
 Brainstorming Progress:
-- [ ] Prep: Autonomous Recon (repo/docs/commits reviewed, change captured, whiteboard started)
+- [ ] Prep: opsx new (HARD GATE — sub-agent ran `/opsx:new`, change directory exists)
+- [ ] Prep: Autonomous Recon (repo/docs/commits reviewed, whiteboard started)
 - [ ] Phase 1: Understanding (purpose, constraints, criteria gathered)
 - [ ] Phase 2: Exploration (2-3 approaches proposed and evaluated)
 - [ ] Phase 3: Design Presentation (design validated in sections)
@@ -141,9 +142,22 @@ Brainstorming Progress:
 
 ### Prep: Autonomous Recon
 
-**Step 1: Capture the change request**
-- If project uses OpenSpec, have a sub-agent create the change record first (`/opsx:new`)
-- This establishes the directory where all artifacts (whiteboard, proposals, specs) will live
+**Step 1: Capture the change request (HARD GATE)**
+
+<critical-instruction>
+ALWAYS run `/opsx:new` as a sub-agent FIRST — before any recon, before any questions.
+- Do NOT ask the user whether to create it. Just do it.
+- Do NOT proceed until the change directory exists.
+- Exception: skip ONLY if user explicitly says "no change record" or "just exploring, no record needed"
+
+Common rationalizations that mean you're about to skip this (STOP):
+- "User hasn't mentioned OpenSpec" → irrelevant; run it
+- "User said 'quick'" → run it; it takes 30 seconds
+- "I'm not sure if they use OpenSpec" → run it; `opsx new` will error if not configured, not your call to preempt
+- "I should ask first" → no; just do it
+</critical-instruction>
+
+This establishes the directory where all artifacts (whiteboard, proposals, specs) will live.
 
 **Step 2: Research**
 - Use existing tools (file browsing, docs, git history, tests) to understand current project state before asking anything.

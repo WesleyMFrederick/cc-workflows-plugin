@@ -59,16 +59,13 @@ Present decomposed tasks in a box-drawing table with three columns: #, Type, and
 
 After presenting the table, prompt:
 
-**Which tasks should I remove?** Reply with the numbers to remove (e.g., `2, 5, 7`), or reply `none` to keep all.
+**Would you like me to:**
+1. Convert to tasks and implement tasks without stopping
+2. Update tasks (share your changes)
 
-After the user responds:
-1. Remove the specified tasks
-2. Renumber remaining tasks sequentially
-3. Present the updated table
-4. For each remaining task, create a TodoWrite entry with:
-   - `subject`: the full self-contained task name (untruncated)
-   - `description`: the internally generated reasoning text
-   - `activeForm`: present continuous form of the task name
+**Option 1 behavior**: For each task in the table, create a TaskCreate entry with `subject` (full untruncated task name), `description` (internally generated reasoning), and `activeForm` (present continuous form). Then begin executing tasks in order without stopping.
+
+**Option 2 behavior**: Wait for the user to specify changes (remove tasks by number, rename, reorder, add new ones). Apply changes, present the updated table, then prompt again with the same two options.
 
 ## Examples
 
@@ -96,7 +93,9 @@ After the user responds:
 │     │        │ elicitation, research, and sense-making                                    │
 └─────┴────────┴───────────────────────────────────────────────────────────────────────────┘
 
-**Which tasks should I remove?** Reply with the numbers to remove (e.g., `2, 5`), or reply `none` to keep all.
+**Would you like me to:**
+1. Convert to tasks and implement tasks without stopping
+2. Update tasks (share your changes)
 </example>
 
 <example>
@@ -132,5 +131,7 @@ After the user responds:
 │     │        │ improvements and validate implemented changes                              │
 └─────┴────────┴───────────────────────────────────────────────────────────────────────────┘
 
-**Which tasks should I remove?** Reply with the numbers to remove (e.g., `2, 5, 7`), or reply `none` to keep all.
+**Would you like me to:**
+1. Convert to tasks and implement tasks without stopping
+2. Update tasks (share your changes)
 </example>
