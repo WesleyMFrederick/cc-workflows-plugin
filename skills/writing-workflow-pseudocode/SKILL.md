@@ -20,7 +20,7 @@ Use when:
 
 Don't use for:
 - Process trees (use operator notation from `writing-ddd-domain-models`)
-- Literal execution traces (use `writing-traces` with `[O:]`/`[M:]` evidence tags)
+- Literal execution traces (use `writing-traces` with `[OBS:]`/`[M:]` evidence tags)
 - Workflows with no external tool calls (use plain DDD workflow pseudocode)
 
 ## Core Pattern: The `via` Clause
@@ -250,7 +250,7 @@ substep "Propagate to Spreadsheet"
 |-------|---------|-------------------|
 | **This skill** | Workflow pseudocode with inline tools | `via` clauses inline |
 | `writing-ddd-domain-models` | Full capture protocol (shapes, trees, workflows) | Separate tool call table |
-| `writing-traces` | Literal execution evidence | `[O:]`/`[M:]` evidence tags |
+| `writing-traces` | Literal execution evidence | `[OBS:]`/`[M:]` evidence tags |
 | `writing-implementation-pseudocode` | TypeScript-style code pseudocode | Strategic comments (Boundary/Integration) |
 
 **When to use which:**

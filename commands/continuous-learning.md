@@ -6,8 +6,17 @@
 
 1. Review the session transcript for the pattern categories below
 2. Output a table with columns: **Pattern Found** | **Scope** (global / specific workflow) | **Trigger** | **Friction Caused**
-3. For each pattern, suggest a concrete fix to one of: CLAUDE.md, a skill, a command, an agent, or a hook
-4. Ask the user which fixes to apply
+3. Express each finding using **Baseline / Ideal / Delta** buckets with ontology tags
+4. For each pattern, suggest a concrete fix to one of: CLAUDE.md, a skill, a command, an agent, or a hook
+5. Ask the user which fixes to apply
+
+## Ontology Output Rules
+
+When using ontology tags in findings, follow Evidence Ontology format:
+- **[OBS] requires source pointers**: `[OBS: SKILL.md:45-49 → "Upgrade to latest" uses @latest tag]`
+- **[OBS] executions require command + result**: `[OBS: npm view dist-tags → stable: 2.1.50, latest: 2.1.63]`
+- **Never bare [OBS]**: `[OBS: the skill uses @latest]` is invalid — no pointer
+- All other tags ([H], [A], [D], [O], [C], [Q]) follow Evidence Ontology One Page definitions
 
 ## Pattern Categories
 

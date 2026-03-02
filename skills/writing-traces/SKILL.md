@@ -19,9 +19,9 @@ These are mandatory checkpoints. Do NOT proceed past them without user confirmat
 
 ## Key Definitions
 
-**Trace** = Literal execution record. This is the **evidence layer**. Each step is numbered and tagged with `[O: file:line]` or `[M: command → result]`. Boundary crossings between components are explicit (e.g., `HOOK → CLI`, `RETURN ←──`). A trace records what ACTUALLY HAPPENED in a specific execution path.
+**Trace** = Literal execution record. This is the **evidence layer**. Each step is numbered and tagged with `[OBS: file:line]` or `[M: command → result]`. Boundary crossings between components are explicit (e.g., `HOOK → CLI`, `RETURN ←──`). A trace records what ACTUALLY HAPPENED in a specific execution path.
 
-**Process Tree** = Abstracted workflow model derived FROM traces. This is the **inference layer**, tagged with `[F-INF]`. Uses operators (→ sequential, × exclusive choice, ∧ parallel, ↻ redo loop) to describe POSSIBLE paths — not a single execution. Every branch must reference the trace step(s) that evidence it.
+**Process Tree** = Abstracted workflow model derived FROM traces. This is the **derivation layer**, tagged with `[F-LK]`. Uses operators (→ sequential, × exclusive choice, ∧ parallel, ↻ redo loop) to describe POSSIBLE paths — not a single execution. Every branch must reference the trace step(s) that evidence it.
 
 **Write traces first. Derive process trees from them.** You cannot model structure until you have recorded evidence. A trace document may have only traces if the workflow is purely linear.
 
@@ -35,7 +35,7 @@ This is the mandatory format reference. Every trace you write must match this st
 2. **Boundary crossings** are explicit (HOOK → CLI → RETURN)
 3. **Sub-steps** (6a-6e) model what happens inside the called component
 4. **Key lines** are called out where the interesting behavior lives
-5. **F-INF conclusions** cite specific step numbers they derive from
+5. **Fact derivations** cite specific step numbers they derive from
 
 ### Full 14-Step Reference Trace
 
@@ -51,55 +51,55 @@ TRACE: extractor hook (PostToolUse:Read)
 
  HOOK: GUARDS
  ────────────
- 2. [O: extractor.sh:27-30]
+ 2. [OBS: extractor.sh:27-30]
     Guard: jq available?
     FAIL → exit 0 (silent skip)
 
- 3. [O: extractor.sh:34-45]
+ 3. [OBS: extractor.sh:34-45]
     Resolve: jact binary
     Try: local build (dist/jact.js)
     Fallback: global CLI
     FAIL → exit 0 (silent skip)
 
- 4. [O: extractor.sh:56-63]
+ 4. [OBS: extractor.sh:56-63]
     Parse: stdin JSON from Claude Code
     Extract: file_path, session_id
     FAIL (no file_path) → exit 0
 
- 5. [O: extractor.sh:77-80]
+ 5. [OBS: extractor.sh:77-80]
     Guard: file_path ends in .md?
     FAIL → exit 0 (silent skip)
 
  HOOK → CLI (boundary crossing)
  ──────────────────────────────
- 6. [O: extractor.sh:92]
+ 6. [OBS: extractor.sh:92]
     CALL ──→ jact extract links "$file_path" --session "$session_id"
     │
     │  CLI: PARSE ARGS
     │  ────────────────
-    │  6a. [O: jact.ts:1131-1291]
+    │  6a. [OBS: jact.ts:1131-1291]
     │      Commander.js parses: extract links <file> --session <id>
     │
     │  CLI: ORCHESTRATE
     │  ────────────────
-    │  6b. [O: jact.ts:429-480]
+    │  6b. [OBS: jact.ts:429-480]
     │      extractLinks() → validate links → extract content
     │
     │  CLI: EXTRACT + DEDUPLICATE
     │  ──────────────────────────
-    │  6c. [O: ContentExtractor.ts:88-235]
+    │  6c. [OBS: ContentExtractor.ts:88-235]
     │      Strategy chain → content extraction → SHA-256 dedup
     │
     │  CLI: OUTPUT
     │  ───────────
-    │  6d. [O: jact.ts:466]
+    │  6d. [OBS: jact.ts:466]
     │      console.log(JSON.stringify(result, null, 2))
     │      ├── extractedContentBlocks  (50KB)  [M]
     │      ├── outgoingLinksReport     (44KB)  [M]
     │      └── stats                   (124B)  [M]
     │      TOTAL: 94KB to stdout               [M]
     │
-    │  6e. [O: jact.ts:exit codes]
+    │  6e. [OBS: jact.ts:exit codes]
     │      Exit: 0 (success) | 1 (no content) | 2 (error)
     │
     RETURN ←── stdout (94KB JSON) + exit code
@@ -107,26 +107,26 @@ TRACE: extractor hook (PostToolUse:Read)
 
  HOOK: PROCESS CLI OUTPUT
  ────────────────────────
- 7. [O: extractor.sh:93]
+ 7. [OBS: extractor.sh:93]
     Capture: exit code from CLI
 
- 8. [O: extractor.sh:97-106]
+ 8. [OBS: extractor.sh:97-106]
     Branch on exit code:
     ├── 0 + empty output → exit 0 (cache hit, already extracted)
     ├── 1             → exit 0 (no citations found)
     └── 2 or empty    → exit 0 (error, silent)
 
- 9. [O: extractor.sh:109]                         ← KEY LINE
+ 9. [OBS: extractor.sh:109]                         ← KEY LINE
     Parse: jq '.extractedContentBlocks'
     USES:    50KB (content blocks)
     DISCARDS: 44KB (outgoingLinksReport) + 124B (stats)
     WASTE:   46% of received data                  [M: 44KB / 94KB]
 
-10. [O: extractor.sh:112-116]
+10. [OBS: extractor.sh:112-116]
     Guard: extracted content not null/empty?
     FAIL → exit 0
 
-11. [O: extractor.sh:121]                         ← KEY LINE
+11. [OBS: extractor.sh:121]                         ← KEY LINE
     Transform: jq maps content blocks →
     "## Citation: <contentId>\n\n<content>\n---"
 
@@ -135,7 +135,7 @@ TRACE: extractor hook (PostToolUse:Read)
 
  HOOK: EMIT RESULT
  ─────────────────
-12. [O: extractor.sh:132-139]
+12. [OBS: extractor.sh:132-139]
     Wrap: jq builds hookSpecificOutput JSON envelope
     {
       "hookSpecificOutput": {
@@ -144,39 +144,39 @@ TRACE: extractor hook (PostToolUse:Read)
       }
     }
 
-13. [O: extractor.sh:141]
+13. [OBS: extractor.sh:141]
     Output: JSON to stdout → Claude Code injects as additionalContext
 
-14. [O: extractor.sh:144]
+14. [OBS: extractor.sh:144]
     Exit: 0 (always non-blocking)
 
 ══════════════════════════════════════════
 END TRACE
 ```
 
-### F-INF Derivations From This Trace
+### Fact Derivations From This Trace
 
-These show how sound inferred facts cite specific steps:
+These show how sound derived facts cite specific steps:
 
-1. **[F-INF: from steps 6d + 9]** The hook receives 94KB but uses only 50KB. The 44KB (46%) is **pipe waste, not context waste** — the CLI serializes it, the pipe transmits it, and the hook immediately discards it via `jq '.extractedContentBlocks'`. Claude never sees the `outgoingLinksReport`.
+1. **[F-LK: from steps 6d + 9]** The hook receives 94KB but uses only 50KB. The 44KB (46%) is **pipe waste, not context waste** — the CLI serializes it, the pipe transmits it, and the hook immediately discards it via `jq '.extractedContentBlocks'`. Claude never sees the `outgoingLinksReport`.
 
-2. **[F-INF: from steps 9 + 11]** The hook performs two format transformations: JSON → extracted blocks (jq) → markdown text (jq). The final output to Claude is markdown, not JSON.
+2. **[F-LK: from steps 9 + 11]** The hook performs two format transformations: JSON → extracted blocks (jq) → markdown text (jq). The final output to Claude is markdown, not JSON.
 
-3. **[F-INF: from step 6d]** The CLI's `console.log(JSON.stringify(result, null, 2))` is the single output point. Any change to default output format affects ALL consumers simultaneously.
+3. **[F-LK: from step 6d]** The CLI's `console.log(JSON.stringify(result, null, 2))` is the single output point. Any change to default output format affects ALL consumers simultaneously.
 
-4. **[F-INF: from steps 2-5]** The hook has 4 guard clauses that exit silently (exit 0). Any of these failing means no content injection.
+4. **[F-ID: from steps 2-5]** The hook has 4 guard clauses that exit silently (exit 0). Any of these failing means no content injection.
 
-### Why Each F-INF Is Sound
+### Why Each Fact Is Sound
 
-| F-INF | Cites | Derivation is valid because |
-|-------|-------|---------------------------|
-| #1 | steps 6d + 9 | 6d measures total output (94KB); 9 shows jq filter discards report (44KB). Math checks out. |
-| #2 | steps 9 + 11 | 9 shows jq extracts JSON blocks; 11 shows jq maps to markdown. Two transformations, verified. |
-| #3 | step 6d | 6d shows single `console.log` call. One output point = all consumers get same format. |
-| #4 | steps 2-5 | Four sequential guards, each with `exit 0` on failure. Count matches. |
+| Fact | Cites | Derivation is valid because |
+|------|-------|---------------------------|
+| #1 [F-LK] | steps 6d + 9 | 6d measures total output (94KB); 9 shows jq filter discards report (44KB). Math checks out. |
+| #2 [F-LK] | steps 9 + 11 | 9 shows jq extracts JSON blocks; 11 shows jq maps to markdown. Two transformations, verified. |
+| #3 [F-LK] | step 6d | 6d shows single `console.log` call. One output point = all consumers get same format. |
+| #4 [F-ID] | steps 2-5 | Four sequential guards, each with `exit 0` on failure. Count matches. |
 
 ## Trace-Specific Red Flags — STOP and Fix
 
 - Process tree with untagged steps
-- "Trace" that uses → × ∧ ↻ operators instead of numbered [O]/[M]-tagged steps (this is a process tree mislabeled as a trace)
-- Process tree with no [F-INF] references back to trace steps
+- "Trace" that uses → × ∧ ↻ operators instead of numbered [OBS]/[M]-tagged steps (this is a process tree mislabeled as a trace)
+- Process tree with no [F-LK]/[F-ID] references back to trace steps
