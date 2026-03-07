@@ -29,6 +29,108 @@ These are mandatory checkpoints. Do NOT proceed past them without user confirmat
 
 **Write traces first. Derive process trees from them.** You cannot model structure until you have recorded evidence. A trace document may have only traces if the workflow is purely linear.
 
+## Process Tree Notation
+
+Based on van der Aalst §3.2.8, *Process Mining: Data Science in Action*. Adapted for readability.
+
+### Operators
+
+| Symbol | Name | Meaning | Children |
+|--------|------|---------|----------|
+| `→` | sequential | execute children left-to-right | 1+ |
+| `×` | exclusive choice | execute exactly ONE child | 2+ |
+| `∧` | parallel | execute ALL children in any order | 2+ |
+| `↻` | redo loop | first child is "do", rest are "redo" options | 2+ |
+| `τ` | silent activity | invisible/skip — no observable output | leaf |
+
+### τ Patterns
+
+| Pattern | Meaning |
+|---------|---------|
+| `×(a, τ)` | activity `a` can be skipped |
+| `↻(a, τ)` | execute `a` one or more times (silent redo) |
+| `↻(τ, a)` | execute `a` zero or more times (silent do) |
+
+### Dual Representation
+
+Every process tree has TWO forms. Both must appear in trace documents.
+
+**1. Canonical inline (source of truth, parseable):**
+```
+→(a, b, ×(c, →(×(d, e, f), g, h, ×(i, τ))))
+```
+
+**2. Visual tree (reading aid):**
+```
+→ workflow-name
+├── [a] first activity
+├── [b] second activity
+└── × choice-name
+    ├── [c] IF condition-1: outcome
+    └── → sequence-name
+        ├── × inner-choice
+        │   ├── [d] IF condition-2: outcome
+        │   ├── [e] IF condition-3: outcome
+        │   └── [f] IF condition-4: outcome
+        ├── [g] next activity                        ← HARD GATE
+        ├── [h] final activity
+        └── × optional
+            ├── [i] optional activity
+            └── [τ] (skip)
+```
+
+### Visual Tree Rules
+
+- **Root line**: `operator workflow-name` — operator governs children, name is a label
+- **Operator lines**: `operator group-name` — appear at group/parent level, govern their children
+- **Leaf lines**: `[letter] activity description` — no operator needed, indent under parent
+- **IF prefix**: use on `×` children to make choice conditions explicit
+- **Annotations**: `← HARD GATE`, `← do part`, `← redo part` for semantics not visible in structure
+- **Indentation** = depth in the tree
+- **Activity legend table** follows the tree — maps each `[letter]` to concrete activity + trace evidence
+
+### Gold Standard Process Tree
+
+From skill-sync-trace workflow:
+
+**Canonical:**
+```
+→(a, b, ×(c, →(×(d, e, f), g, h, ×(i, τ))))
+```
+
+**Visual tree:**
+```
+→ skill-sync-workflow
+├── [a] user requests skill sync
+├── [b] diff consumer vs hub
+└── × classification
+    ├── [c] IF identical: report "in sync"
+    └── → needs-sync
+        ├── × direction
+        │   ├── [d] IF hub-newer: recommend pull
+        │   ├── [e] IF consumer-newer: recommend push
+        │   └── [f] IF diverged: show diff, recommend merge
+        ├── [g] user decides + approves              ← HARD GATE
+        ├── [h] copy + commit destination
+        └── × optional-push
+            ├── [i] push hub to origin
+            └── [τ] (skip)
+```
+
+**Activity legend:**
+
+| Node | Activity | Trace evidence |
+|------|----------|---------------|
+| [a] | user names skill to sync | steps 1, 6 |
+| [b] | `diff` consumer vs hub SKILL.md | steps 3, 7 |
+| [c] | IF identical: report "in sync" | not observed |
+| [d] | IF hub-newer: show diff + recommend pull | step 3 |
+| [e] | IF consumer-newer: show diff + recommend push | step 7 |
+| [f] | IF diverged: show diff + recommend merge | not observed |
+| [g] | user decides direction + confirms | steps 4, 8 |
+| [h] | `cp` in chosen direction + `git commit` | steps 4-5, 8-9 |
+| [i] | `git push origin main` | step 13 |
+
 ## Gold Standard Trace
 
 This is the mandatory format reference. Every trace you write must match this structure.
