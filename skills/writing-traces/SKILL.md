@@ -1,13 +1,17 @@
 ---
 name: writing-traces
-description: Use when tracing how a system, format, or workflow works today - provides trace format, process tree definitions, hard gates for trace subject confirmation, and a mandatory gold standard reference. Applies to baseline investigations, debugging, and any "how does this work now" analysis. For evidence tag rules and verification, see the verifying-evidence skill.
+description: Use when tracing how a system, format, or workflow works today - provides trace format, process tree definitions, hard gates for trace subject confirmation, and a mandatory gold standard reference. Applies to baseline investigations, debugging, and any "how does this work now" analysis.
 ---
 
 # Writing Traces
 
 ## Overview
 
-Traces record the factual state of how a system works through literal execution records and optionally process trees (abstracted workflow models). Use this skill whenever you need to trace "how does this work now" — whether for OpenSpec baselines, debugging investigations, or any current-state analysis. For evidence tag rules, verification checklists, and the [A]/[Q] utility format, see the `verifying-evidence` skill.
+Traces record the factual state of how a system works through literal execution records and optionally process trees (abstracted workflow models). Use this skill whenever you need to trace "how does this work now" — whether for OpenSpec baselines, debugging investigations, or any current-state analysis. 
+
+### CRITICAL REQUIREMENT
+- **READ** `reference/evidence-ontology-one-page.md` for evidence tag rules
+
 
 ## Hard Gates
 
@@ -31,15 +35,35 @@ This is the mandatory format reference. Every trace you write must match this st
 
 ### What Makes a Trace Sound
 
-1. **Every step has an evidence tag** with file:line
-2. **Boundary crossings** are explicit (HOOK → CLI → RETURN)
-3. **Sub-steps** (6a-6e) model what happens inside the called component
-4. **Key lines** are called out where the interesting behavior lives
-5. **Fact derivations** cite specific step numbers they derive from
+1. **Artifacts section** comes first — lists every source file, transcript, or artifact needed to replay the trace
+2. **Every step has an evidence tag** with file:line
+3. **Boundary crossings** are explicit (HOOK → CLI → RETURN)
+4. **Sub-steps** (6a-6e) model what happens inside the called component
+5. **Key lines** are called out where the interesting behavior lives
+6. **Fact derivations** cite specific step numbers they derive from
+
+### Artifacts Section (mandatory, before trace body)
+
+Every trace document must open with an Artifacts table. Include only what is needed to **locate and re-read** the evidence — no detail that belongs in the trace itself.
+
+```markdown
+## Artifacts
+
+| Artifact | Path | Role |
+|----------|------|------|
+| CLI Command | `src/cli/extract-schema.ts` | Entry point traced |
+| Session transcript | `claude-code-transcripts/abc123.jsonl` | Primary evidence source |
+| Plan file | `.claude/plans/my-plan.md` | Artifact being evaluated |
+```
+
+Rules:
+- Path must be absolute or repo-relative — enough to open the file without searching
+- Role is one phrase: what this artifact contributes to the trace
+- Do NOT duplicate content from the artifact — just point to it
 
 ### Full 14-Step Reference Trace
 
-```text
+~~~text
 TRACE: extractor hook (PostToolUse:Read)
 ══════════════════════════════════════════
 
@@ -152,7 +176,7 @@ TRACE: extractor hook (PostToolUse:Read)
 
 ══════════════════════════════════════════
 END TRACE
-```
+~~~
 
 ### Fact Derivations From This Trace
 
