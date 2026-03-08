@@ -5,7 +5,7 @@
 ## Instructions
 
 1. Review the session transcript for the pattern categories below
-2. Output a table with columns: **Pattern Found** | **Scope** (global / specific workflow) | **Trigger** | **Friction Caused**
+2. Output a table with columns: **ID** | **Pattern Found** | **Scope** (global / specific workflow) | **Trigger** | **Friction Caused** | **Proposed Fix** | **Fix Path**
 3. Express each finding using **Baseline / Ideal / Delta** buckets with ontology tags
 4. For each pattern, suggest a concrete fix to one of: CLAUDE.md, a skill, a command, an agent, or a hook
 5. Ask the user which fixes to apply
